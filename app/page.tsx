@@ -9,13 +9,20 @@ import {
   Building2,
   Check,
   ChevronRight,
+  Coins,
   GraduationCap,
+  Handshake,
   HeartHandshake,
   Mail,
   MapPin,
+  Megaphone,
+  MonitorPlay,
   Phone,
   Play,
   Quote,
+  Scale,
+  Search,
+  Settings,
   ShieldCheck,
   Sparkles,
   Sprout,
@@ -90,39 +97,81 @@ const franchiseSteps = [
   "Launch with admissions support"
 ];
 
-const support = [
-  "Brand license and identity guidance",
-  "Structured curriculum and academic framework",
-  "Teacher training and professional development",
-  "Marketing and admissions support",
-  "School management and operational systems",
-  "Continuous guidance from the New Vedha team"
+const franchiseSupportPillars = [
+  {
+    icon: Scale,
+    title: "Legal documentation",
+    detail:
+      "Structured paperwork, compliance checkpoints, and brand-safe templates so your centre opens with clarity from day one."
+  },
+  {
+    icon: Search,
+    title: "Market survey",
+    detail:
+      "Catchment review, demand signals, and practical positioning notes to validate fit before you commit capital or lease terms."
+  },
+  {
+    icon: Handshake,
+    title: "Agreements",
+    detail:
+      "Transparent franchise discussions and agreements aligned to roles, territories, and ongoing responsibilities on both sides."
+  },
+  {
+    icon: Coins,
+    title: "Purchase savings",
+    detail:
+      "Guided procurement lists and negotiated supplier categories to protect quality while improving predictable setup spend."
+  },
+  {
+    icon: Megaphone,
+    title: "Branding & marketing",
+    detail:
+      "Brand-ready assets, launch narratives, local campaign ideas, and admissions storytelling tuned for premium preschool trust."
+  },
+  {
+    icon: MonitorPlay,
+    title: "Interactive Program Studio",
+    detail:
+      "A guided studio for interactive lesson flows, digital reinforcement, and classroom-ready assets—paired with tutorials and coaching so teachers adopt confidently."
+  },
+  {
+    icon: UsersRound,
+    title: "Admission support",
+    detail:
+      "Enquiry handling frameworks, parent walkthroughs, fee communication etiquette, and retention-minded onboarding rhythms."
+  },
+  {
+    icon: Settings,
+    title: "Operational support",
+    detail:
+      "Daily SOPs, quality routines, staffing rhythms, and escalation paths to the New Vedha team when decisions need a second opinion."
+  }
 ];
 
 const ecosystem = [
   {
     name: "Preschool",
-    text: "Play Home, Nursery, LKG, and UKG built around joyful early childhood development."
+    text: "Play Home, Nursery, LKG, and UKG built around joyful early childhood development—safe routines, trained educators, parent visibility, and progression into higher grades without friction."
   },
   {
     name: "Coaching",
-    text: "Academic support for school students with discipline, doubt-solving, and board readiness."
+    text: "Structured academic support for school-age learners: disciplined practice, doubt-solving, periodic assessments, and board-aware pacing without crushing curiosity."
   },
   {
     name: "Online Learning",
-    text: "A digital learning layer for accessible classes, assessments, and student progress tracking."
+    text: "Accessible digital classes, assignments, and progress visibility so learning continues beyond the physical classroom for families who need flexibility."
   },
   {
     name: "Skill Academy",
-    text: "Future-facing employability programs designed for students moving toward careers."
+    text: "Employability-focused pathways that bridge academics with communication, tools, and industry-aware projects as students approach higher study and first careers."
   },
   {
     name: "Corporate Training",
-    text: "Campus-to-corporate, employee upskilling, and placement-focused training partnerships."
+    text: "Campus-to-corporate journeys, workplace upskilling, and partnership models that align institutional training with hiring and productivity outcomes."
   },
   {
     name: "Franchise Network",
-    text: "A scalable partner ecosystem for education entrepreneurs across India."
+    text: "Entrepreneurs plug into shared curriculum, brand systems, and ongoing guidance—scaling ethical education businesses with lower guesswork and stronger learner outcomes."
   }
 ];
 
@@ -131,13 +180,13 @@ const leaders = [
     name: "Nagabushan N",
     role: "Chief Executive Officer",
     phone: "+91 8310325960",
-    email: "ceo@newvedha.com"
+    email: "contact@newvedha.com"
   },
   {
     name: "Sandesh Shetty",
     role: "Managing Director",
     phone: "+91 9900313472",
-    email: "md@newvedha.com"
+    email: "contact@newvedha.com"
   }
 ];
 
@@ -468,7 +517,9 @@ export default function Home() {
             <p className="mt-6 text-lg font-semibold leading-8 text-[#30443b]/76">
               Commercials are shared only after consultation. The site focuses on
               vision, support, and fit, then invites serious partners to speak with
-              leadership.
+              leadership. Your preschool sits inside our wider{" "}
+              <span className="font-black text-[#123b2a]">Kids To Careers</span>{" "}
+              journey—not an isolated playschool, but an on-ramp into lifelong learning.
             </p>
             <a
               href="#contact"
@@ -500,15 +551,48 @@ export default function Home() {
               ))}
             </div>
 
+            <article className="rounded-[2rem] border border-[#cdbf9e] bg-[#fff9eb] p-8 md:p-10">
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#b87808]">
+                Kids To Careers
+              </p>
+              <h3 className="mt-4 text-3xl font-black leading-tight text-[#123b2a] md:text-4xl">
+                One education ecosystem, many future pathways.
+              </h3>
+              <p className="mt-5 text-lg font-semibold leading-8 text-[#30443b]/82">
+                Franchise partners inherit more than a preschool brand—you join a continuum
+                from early childhood through coaching, digital learning, skills, and
+                corporate programs. Families can grow with New Vedha; your centre becomes
+                the trusted first chapter.
+              </p>
+              <a
+                href="#ecosystem"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-[#0b5f63] hover:text-[#123b2a]"
+              >
+                Explore the ecosystem <ChevronRight size={16} />
+              </a>
+            </article>
+
             <article className="rounded-[2rem] bg-white p-8 shadow-[0_24px_80px_rgba(18,59,42,0.12)] md:p-10">
-              <h3 className="text-3xl font-black text-[#123b2a]">Partner support</h3>
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {support.map((item) => (
-                  <div key={item} className="flex gap-3">
-                    <span className="mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-[#e8f4ee] text-[#123b2a]">
-                      <Check size={15} strokeWidth={3} />
+              <h3 className="text-3xl font-black text-[#123b2a]">
+                360° support for franchise success
+              </h3>
+              <p className="mt-4 max-w-3xl text-lg font-semibold leading-8 text-[#30443b]/76">
+                Every pillar below includes practical templates, live conversations with
+                the central team, and escalation paths—so execution stays grounded, not
+                theoretical.
+              </p>
+              <div className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+                {franchiseSupportPillars.map(({ icon: Icon, title, detail }) => (
+                  <div key={title} className="flex flex-col items-center text-center">
+                    <span className="grid size-[4.25rem] place-items-center rounded-full bg-[#f0b33b] text-[#13251d] shadow-[0_12px_36px_rgba(240,179,59,0.35)]">
+                      <Icon size={26} strokeWidth={2} aria-hidden />
                     </span>
-                    <p className="font-bold leading-7 text-[#30443b]/78">{item}</p>
+                    <h4 className="mt-5 text-lg font-black leading-snug text-[#123b2a]">
+                      {title}
+                    </h4>
+                    <p className="mt-3 text-sm font-semibold leading-6 text-[#30443b]/78">
+                      {detail}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -611,7 +695,7 @@ export default function Home() {
           <div className="grid gap-5 md:grid-cols-2">
             {leaders.map((leader) => (
               <article
-                key={leader.email}
+                key={leader.name}
                 className="rounded-[2rem] bg-white p-7 shadow-[0_24px_80px_rgba(18,59,42,0.12)] transition hover:-translate-y-1"
               >
                 <div className="mb-7 flex items-center justify-between">
