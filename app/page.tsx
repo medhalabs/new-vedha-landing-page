@@ -180,13 +180,13 @@ const leaders = [
     name: "Nagabushan N",
     role: "Chief Executive Officer",
     phone: "+91 8310325960",
-    email: "contact@newvedha.com"
+    email: "sandesh@newvedha.com "
   },
   {
     name: "Sandesh Shetty",
     role: "Managing Director",
     phone: "+91 9900313472",
-    email: "contact@newvedha.com"
+    email: "sandesh@newvedha.com "
   }
 ];
 
@@ -825,13 +825,13 @@ export default function Home() {
 
             <div className="mt-8 grid gap-4">
               <a
-                href="mailto:contact@newvedha.com"
+                href="mailto:sandesh@newvedha.com "
                 className="group flex items-center gap-4 rounded-3xl bg-[#123b2a] p-5 font-black text-white shadow-[0_18px_50px_rgba(18,59,42,0.28)] transition hover:-translate-y-1 hover:bg-[#0b5f63] hover:shadow-[0_24px_60px_rgba(11,95,99,0.35)]"
               >
                 <span className="grid size-12 place-items-center rounded-2xl bg-white text-[#123b2a] shadow-inner transition group-hover:scale-105">
                   <Mail size={22} />
                 </span>
-                contact@newvedha.com
+                sandesh@newvedha.com 
               </a>
               <div className="flex items-start gap-4 rounded-3xl border border-[#dcd4c4] bg-white/90 p-5 shadow-[0_12px_36px_rgba(18,59,42,0.06)] backdrop-blur-sm">
                 <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#f0b33b] text-[#13251d]">
