@@ -914,7 +914,7 @@ export default function Home() {
 
       <footer className="relative border-t border-white/10 bg-[#061b16] py-12 text-white">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f0b33b]/55 to-transparent" aria-hidden />
-        <div className="section-shell flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+        <div className="section-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <Image
               src="/new-vedha-logo.png"
@@ -930,9 +930,22 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <p className="text-sm font-semibold text-white/58">
-            © 2026 New Vedha. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-2 md:items-end md:text-right">
+            <p className="text-sm font-semibold text-white/58">
+              © 2026 New Vedha. All rights reserved.
+            </p>
+            <p className="text-sm font-semibold text-white/45">
+              Website built by{" "}
+              <a
+                href="https://medhalabs.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-white/72 underline decoration-white/25 underline-offset-4 transition hover:text-white hover:decoration-[#f0b33b]"
+              >
+                Medhālabs
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
     </main>
