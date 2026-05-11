@@ -32,6 +32,8 @@ import {
 
 const navItems = ["Programs", "Experience", "Franchise", "Ecosystem", "Contact"];
 
+const heroRotatingPhrases = ["Pre School", "Coaching center", "Skill Academy"];
+
 const programs = [
   {
     name: "Play Home",
@@ -183,10 +185,71 @@ const leaders = [
     email: "sandesh@newvedha.com "
   },
   {
-    name: "Sandesh Shetty",
-    role: "Managing Director",
-    phone: "+91 9900313472",
+    name: "Narasimha Murthy",
+    role: "Chief Managing Officer",
+    phone: "+91 9743595827",
     email: "sandesh@newvedha.com "
+  }
+];
+
+/** Leadership roster: role, highlights. Featured links tie to public products (e.g. medhalabs.in, venmox.in). */
+const executives: {
+  name: string;
+  designation: string;
+  achievements: string[];
+  filled: boolean;
+  seeAlso?: { href: string; label: string; trailing: string };
+}[] = [
+  {
+    name: "Sandesh Shetty",
+    designation: "Founder & Managing Director",
+    achievements: [
+      "Brings more than 25 years of experience running a long-standing family legacy business—discipline in finance, relationships, and steady execution that now anchors how New Vedha scales with integrity.",
+      "Founder of New Vedha Pre School and highly ambitious for the education sector—focused on expanding access to high-trust early learning, franchise growth, and programs that pair timeless values with modern classroom practice."
+    ],
+    filled: true
+  },
+  {
+    name: "Nagabushan N",
+    designation: "Chief Executive Officer",
+    achievements: [
+      "Founder & CEO of Venmox Crypto Broker, a next-generation crypto brokerage platform delivering secure, transparent, and high-performance trading solutions for global investors.Dedicated to creating advanced financial platforms that empower communities, encourage financial growth, and support digital transformation.",
+      "Visionary entrepreneur passionate about innovation, finance, blockchain technology, and building scalable business ecosystems for the future."
+    ],
+    filled: true,
+    seeAlso: {
+      href: "https://venmox.in/",
+      label: "Venmox Exchange",
+      trailing: "—the crypto platform led from the CEO office."
+    }
+  },
+  {
+    name: "Pavan Raj K G",
+    designation: "Chief Operating Officer",
+    achievements: [
+      "Founded Medhā Labs in 2022 and leads its product line—highlighting shipped tools such as Billinator and Medha Inbrix, while supporting many technology companies with customised software solutions.",
+      "Continues to ship and evolve further web products alongside bespoke software and growth-focused builds for startups and brands."
+    ],
+    filled: true,
+    seeAlso: {
+      href: "https://medhalabs.in/",
+      label: "Medhā Labs",
+      trailing: "—the studio behind our digital presence."
+    }
+  },
+  {
+    name: "Narasimha Murthy",
+    designation: "Chief Marketing Officer",
+    achievements: [
+      "An industrialist and the founder of H S CNC Tech—bringing a manufacturing mindset, operational rigor, and long-horizon business building to how we position New Vedha and its programs in the market.",
+      "Co-founder of Venmox Exchange, helping steer brand narrative, community growth, and partnerships alongside the core product—connecting institutional-grade ambition with how families and partners experience our education brands."
+    ],
+    filled: true,
+    seeAlso: {
+      href: "https://venmox.in/",
+      label: "Venmox Exchange",
+      trailing: "—co-founded with the Venmox leadership team."
+    }
   }
 ];
 
@@ -210,6 +273,10 @@ export default function Home() {
   const [activeEco, setActiveEco] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const [heroTyped, setHeroTyped] = useState("");
+  const [heroPhraseIndex, setHeroPhraseIndex] = useState(0);
+  const [heroDeleting, setHeroDeleting] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -223,6 +290,45 @@ export default function Home() {
     window.addEventListener("scroll", updateProgress, { passive: true });
     return () => window.removeEventListener("scroll", updateProgress);
   }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setPrefersReducedMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setHeroTyped(heroRotatingPhrases[0]);
+      setHeroDeleting(false);
+      setHeroPhraseIndex(0);
+      return;
+    }
+
+    const full = heroRotatingPhrases[heroPhraseIndex];
+    const typeMs = heroDeleting ? 42 : 78;
+    const pauseMs = 2200;
+    const pauseBetweenMs = 360;
+
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (!heroDeleting && heroTyped === full) {
+      timer = setTimeout(() => setHeroDeleting(true), pauseMs);
+    } else if (heroDeleting && heroTyped === "") {
+      timer = setTimeout(() => {
+        setHeroDeleting(false);
+        setHeroPhraseIndex((i) => (i + 1) % heroRotatingPhrases.length);
+      }, pauseBetweenMs);
+    } else if (heroDeleting) {
+      timer = setTimeout(() => setHeroTyped((t) => t.slice(0, -1)), typeMs);
+    } else {
+      timer = setTimeout(() => setHeroTyped(full.slice(0, heroTyped.length + 1)), typeMs);
+    }
+
+    return () => clearTimeout(timer);
+  }, [heroTyped, heroPhraseIndex, heroDeleting, prefersReducedMotion]);
 
   const program = programs[activeProgram];
   const eco = ecosystem[activeEco];
@@ -274,7 +380,7 @@ export default function Home() {
                 NEW VEDHA
               </p>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#96e0d3]">
-                Pre School
+                Pre School | Skill Academy
               </p>
             </div>
           </a>
@@ -325,13 +431,26 @@ export default function Home() {
         <div className="absolute inset-x-0 bottom-0 z-[3] h-36 bg-[linear-gradient(0deg,#faf6ee_0%,rgba(250,246,238,0)_100%)]" />
 
         <div className="section-shell relative z-10 grid min-h-[94vh] items-center gap-10 pb-24 pt-[6.5rem] lg:grid-cols-[1.04fr_0.96fr] lg:pb-20 lg:pt-28">
-          <div className="max-w-4xl section-reveal">
+          <div className="relative z-20 max-w-4xl section-reveal">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/22 bg-gradient-to-r from-white/[0.14] to-white/[0.06] px-4 py-2.5 text-sm font-black text-[#fff4d4] shadow-[0_12px_40px_rgba(0,0,0,0.2)] backdrop-blur-xl">
               <WandSparkles size={16} className="text-[#f0b33b]" />
               Ancient Wisdom | Modern Minds
             </div>
-            <h1 className="text-balance text-6xl font-black leading-[0.9] tracking-tight drop-shadow-[0_6px_48px_rgba(0,0,0,0.38)] sm:text-7xl lg:text-[6.6rem]">
-              New Vedha Pre School
+            <h1 className="text-balance font-black tracking-tight drop-shadow-[0_6px_48px_rgba(0,0,0,0.38)]">
+              <span className="block text-6xl leading-[0.95] sm:text-7xl lg:text-[6.6rem]">
+                New Vedha
+              </span>
+              <span className="mt-1.5 block text-4xl leading-[1.05] sm:mt-2 sm:text-5xl lg:mt-2.5 lg:text-[3.15rem]">
+                <span className="relative inline-block min-w-[13ch] max-w-full text-left">
+                  <span className="text-[#f0b33b]" aria-hidden="true">
+                    {heroTyped}
+                    <span
+                      className={`hero-type-caret ml-1 inline-block h-[0.78em] w-[3px] translate-y-px bg-current align-[-0.1em] sm:align-[-0.08em] ${prefersReducedMotion ? "hero-type-caret-static" : ""}`}
+                    />
+                  </span>
+                  <span className="sr-only">{heroRotatingPhrases.join(", ")}</span>
+                </span>
+              </span>
             </h1>
             <p className="mt-7 max-w-2xl text-balance text-xl font-semibold leading-8 text-white/[0.88]">
               A next-generation early learning environment where curiosity,
@@ -356,20 +475,60 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative hidden section-reveal section-reveal-delay-1 lg:block">
-            <div className="hero-orbit mx-auto aspect-square max-w-[520px] rounded-full border border-white/22 bg-gradient-to-br from-white/[0.14] to-white/[0.04] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-md">
-              <div className="relative grid h-full place-items-center rounded-full bg-white/92 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+          <div className="relative z-0 hidden section-reveal section-reveal-delay-1 lg:block">
+            <div className="hero-orbit hero-orbit-glass mx-auto aspect-square max-w-[520px] rounded-full p-7 md:p-8">
+              <div className="hero-orbit-inner relative grid h-full w-full place-items-center overflow-visible rounded-full">
+                <svg
+                  className="orbit-connectors pointer-events-none absolute inset-[6%] z-0 h-[88%] w-[88%]"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden
+                >
+                  <defs>
+                    <linearGradient
+                      id="heroOrbitLineGrad"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop offset="0%" stopColor="#96e0d3" stopOpacity="0.25" />
+                      <stop offset="45%" stopColor="#f0b33b" stopOpacity="0.55" />
+                      <stop offset="100%" stopColor="#96e0d3" stopOpacity="0.2" />
+                    </linearGradient>
+                  </defs>
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="31"
+                    className="orbit-connectors-ring"
+                    stroke="url(#heroOrbitLineGrad)"
+                    strokeWidth="0.45"
+                  />
+                  <g
+                    stroke="url(#heroOrbitLineGrad)"
+                    strokeWidth="0.5"
+                    strokeLinecap="round"
+                    className="orbit-connectors-spokes"
+                  >
+                    <line x1="50" y1="50" x2="15" y2="25" />
+                    <line x1="50" y1="50" x2="85" y2="28" />
+                    <line x1="50" y1="50" x2="18" y2="76" />
+                    <line x1="50" y1="50" x2="82" y2="74" />
+                  </g>
+                </svg>
                 <Image
-                  src="/new-vedha-logo.png"
+                  src="/new-vedha-hero-logo.png"
                   alt="New Vedha symbolic learning tree"
-                  width={620}
-                  height={620}
-                  className="w-[82%] object-contain"
+                  width={500}
+                  height={500}
+                  className="relative z-[1] w-[76%] object-contain drop-shadow-[0_14px_40px_rgba(6,27,22,0.2)]"
                 />
                 {["Mind", "Play", "Safety", "Future"].map((item, index) => (
                   <span
                     key={item}
-                    className={`orbit-chip orbit-chip-${index + 1} absolute rounded-full bg-[#07231c] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#f9dc8f] shadow-xl`}
+                    className={`orbit-chip orbit-chip-${index + 1} absolute z-[2] rounded-full border border-[#f0b33b]/40 bg-black px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#f9dc8f] shadow-[0_10px_34px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-md`}
                   >
                     {item}
                   </span>
@@ -909,6 +1068,83 @@ export default function Home() {
             </details>
           ))}
         </div>
+        </div>
+      </section>
+
+      <section
+        id="leadership"
+        className="relative overflow-hidden bg-[#f7f2e8] py-24 md:py-28"
+        aria-labelledby="leadership-heading"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,253,247,0.9)_0%,transparent_40%,rgba(232,244,238,0.35)_100%)]"
+          aria-hidden
+        />
+        <div className="section-shell relative">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="inline-flex items-center justify-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[#b87808]">
+              <span className="h-px w-10 bg-[#123b2a]/20" aria-hidden />
+              Founder &amp; executives
+              <span className="h-px w-10 bg-[#123b2a]/20" aria-hidden />
+            </p>
+            <h2
+              id="leadership-heading"
+              className="mt-4 text-4xl font-black leading-[1.08] text-[#123b2a] md:text-5xl lg:text-6xl"
+            >
+              The people guiding New Vedha forward.
+            </h2>
+            <p className="mt-5 text-lg font-semibold leading-8 text-[#243831]/85">
+              A quick introduction to our leadership bench—background, mandate, and what
+              they have already delivered in education, operations, and growth.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+            {executives.map((exec) => (
+              <article
+                key={exec.designation}
+                className={`card-lift flex flex-col overflow-hidden rounded-[2rem] border bg-white shadow-[0_18px_56px_rgba(18,59,42,0.08)] transition ${
+                  exec.filled
+                    ? "border-[#dbe8e0] before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-[#f0b33b] before:to-[#0b5f63] before:content-[''] relative"
+                    : "border-[#ebe7df]"
+                }`}
+              >
+                <div className="flex flex-1 flex-col p-6 md:p-7">
+                  <h3 className="text-xl font-black text-[#123b2a] md:text-[1.35rem]">{exec.name}</h3>
+                  <p className="mt-1 text-xs font-black uppercase tracking-[0.2em] text-[#b87808]">
+                    {exec.designation}
+                  </p>
+
+                  <ul className="mt-5 list-none space-y-2.5 p-0 text-sm font-semibold leading-relaxed text-[#30443b]/82 md:text-[0.9375rem]">
+                    {exec.achievements.map((line) => (
+                      <li key={line} className="flex gap-2.5">
+                        <span
+                          className="mt-[0.45rem] size-1.5 shrink-0 rounded-full bg-[#0b5f63]"
+                          aria-hidden
+                        />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {exec.seeAlso ? (
+                    <p className="mt-6 text-xs font-bold text-[#30443b]/55">
+                      Also see{" "}
+                      <a
+                        href={exec.seeAlso.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-black text-[#0b5f63] underline decoration-[#0b5f63]/30 underline-offset-4 transition hover:text-[#123b2a] hover:decoration-[#123b2a]"
+                      >
+                        {exec.seeAlso.label}
+                      </a>{" "}
+                      {exec.seeAlso.trailing}
+                    </p>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
