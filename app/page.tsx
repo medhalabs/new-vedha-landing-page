@@ -4,19 +4,27 @@ import Image from "next/image";
 import { useEffect, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
-  BookOpenCheck,
+  Award,
+  Bot,
   Brain,
+  Briefcase,
   Building2,
   Check,
   ChevronRight,
   Coins,
+  FileSearch,
   GraduationCap,
   Handshake,
   HeartHandshake,
+  Laptop,
+  Lightbulb,
   Mail,
   MapPin,
   Megaphone,
+  MessageCircle,
+  Monitor,
   MonitorPlay,
+  Palette,
   Phone,
   Play,
   Quote,
@@ -26,11 +34,19 @@ import {
   ShieldCheck,
   Sparkles,
   Sprout,
+  TrendingUp,
   UsersRound,
   WandSparkles
 } from "lucide-react";
 
-const navItems = ["Programs", "Experience", "Franchise", "Ecosystem", "Contact"];
+const navItems = [
+  "Programs",
+  "Experience",
+  "Franchise",
+  "Ecosystem",
+  "Skill Academy",
+  "Contact"
+];
 
 const heroRotatingPhrases = ["Pre School", "Coaching center", "Skill Academy"];
 
@@ -153,29 +169,125 @@ const franchiseSupportPillars = [
 const ecosystem = [
   {
     name: "Preschool",
+    image:
+      "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1400&q=80",
+    imageAlt:
+      "Young children exploring hands-on preschool activities—play, sensory learning, and discovery.",
     text: "Play Home, Nursery, LKG, and UKG built around joyful early childhood development—safe routines, trained educators, parent visibility, and progression into higher grades without friction."
   },
   {
     name: "Coaching",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80",
+    imageAlt:
+      "School-age students in focused classroom coaching—study, discipline, and academic support.",
     text: "Structured academic support for school-age learners: disciplined practice, doubt-solving, periodic assessments, and board-aware pacing without crushing curiosity."
   },
   {
     name: "Online Learning",
+    image:
+      "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1400&q=80",
+    imageAlt:
+      "Learner following an online lesson on a laptop—digital classes and flexible schedules.",
     text: "Accessible digital classes, assignments, and progress visibility so learning continues beyond the physical classroom for families who need flexibility."
   },
   {
     name: "Skill Academy",
-    text: "Employability-focused pathways that bridge academics with communication, tools, and industry-aware projects as students approach higher study and first careers."
-  },
-  {
-    name: "Corporate Training",
-    text: "Campus-to-corporate journeys, workplace upskilling, and partnership models that align institutional training with hiring and productivity outcomes."
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80",
+    imageAlt:
+      "Professionals collaborating at computers—skills training, tools, and employability-focused learning.",
+    text: "Industry-relevant skills, project-based learning, and exam-backed certification—plus job application support, interview prep, and career guidance so learners move from classroom to career with confidence. We teach what you ask for: the published list covers only sample tracks; faculty are drawn from a much wider bench, so whatever you want to pursue, ask us—we can typically match you with the right mentors."
   },
   {
     name: "Franchise Network",
+    image:
+      "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1400&q=80",
+    imageAlt:
+      "Partners planning together—franchise support, entrepreneurship, and brand-aligned centres.",
     text: "Entrepreneurs plug into shared curriculum, brand systems, and ongoing guidance—scaling ethical education businesses with lower guesswork and stronger learner outcomes."
   }
 ];
+
+const skillAcademyTeachAreas = [
+  {
+    title: "IT Skills",
+    icon: Laptop,
+    iconGradient: "from-[#6d28d9] to-[#4c1d95]",
+    items: ["Code: Python, Java, React (Frontend)", "DBMS (SQL, MySQL)", "AI Skills"]
+  },
+  {
+    title: "Robotics & Electronics",
+    icon: Bot,
+    iconGradient: "from-[#059669] to-[#047857]",
+    items: ["Robotics", "Electronics", "Arduino Programming", "Raspberry Pi Projects"]
+  },
+  {
+    title: "Design & Software",
+    icon: Palette,
+    iconGradient: "from-[#2563eb] to-[#1d4ed8]",
+    items: ["CAD Design", "MS Excel (Advanced)", "Software Tools (Latest Industry Usage)"]
+  },
+  {
+    title: "Communication & Personal Growth",
+    icon: UsersRound,
+    iconGradient: "from-[#ea580c] to-[#c2410c]",
+    items: ["Personality Development", "Advanced English", "German Language"]
+  },
+  {
+    title: "Basic & Advanced Computer Skills",
+    icon: Monitor,
+    iconGradient: "from-[#db2777] to-[#be185d]",
+    items: ["Basic Computer", "Advanced Computer Skills", "Internet & Digital Literacy"]
+  },
+  {
+    title: "Self Employment",
+    icon: Briefcase,
+    iconGradient: "from-[#0d9488] to-[#0f766e]",
+    items: ["Entrepreneurship Skills", "Small Business Ideas", "Self Employment Guidance"]
+  }
+] as const;
+
+const skillAcademyApproachItems = [
+  {
+    icon: Lightbulb,
+    title: "Project-Based Learning",
+    text: "Learn by building real-world projects that strengthen concepts and practical understanding."
+  },
+  {
+    icon: Award,
+    title: "Certificate Based on Exams",
+    text: "Certificates awarded based on performance in exams and project evaluations."
+  },
+  {
+    icon: GraduationCap,
+    title: "Industry Relevant Curriculum",
+    text: "Updated skills aligned with industry standards and future technologies."
+  }
+] as const;
+
+const skillAcademyCareerSteps = [
+  {
+    icon: FileSearch,
+    title: "Job Application Support",
+    text: "We help you apply to the right job opportunities."
+  },
+  {
+    icon: MessageCircle,
+    title: "Interview Preparation",
+    text: "Resume building, mock interviews, and personal guidance."
+  },
+  {
+    icon: TrendingUp,
+    title: "Push Through Consultancies",
+    text: "We connect and recommend you through our trusted consultancy partners."
+  },
+  {
+    icon: Handshake,
+    title: "Career Guidance",
+    text: "One-to-one support to help you choose the right career path."
+  }
+] as const;
 
 const leaders = [
   {
@@ -387,7 +499,11 @@ export default function Home() {
 
           <nav className="hidden items-center gap-8 text-sm font-bold lg:flex">
             {navItems.map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="nav-link text-white/76">
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                className="nav-link text-white/76"
+              >
                 {item}
               </a>
             ))}
@@ -781,8 +897,8 @@ export default function Home() {
               </h3>
               <p className="mt-5 text-lg font-semibold leading-8 text-[#30443b]/82">
                 Franchise partners inherit more than a preschool brand—you join a continuum
-                from early childhood through coaching, digital learning, skills, and
-                corporate programs. Families can grow with New Vedha; your centre becomes
+                from early childhood through coaching, digital learning, and skills-focused
+                programs. Families can grow with New Vedha; your centre becomes
                 the trusted first chapter.
               </p>
               <a
@@ -915,18 +1031,22 @@ export default function Home() {
               id="eco-panel"
               role="tabpanel"
               aria-labelledby={`eco-tab-${activeEco}`}
-              className="flex min-h-[min(420px,70vh)] flex-col overflow-hidden rounded-[2rem] border border-[#cfc7bc] bg-white shadow-[0_26px_70px_rgba(18,59,42,0.11)] lg:min-h-[460px] lg:flex-row"
+              className="flex min-h-[min(420px,70vh)] flex-col overflow-hidden rounded-[2rem] border border-[#cfc7bc] bg-white shadow-[0_26px_70px_rgba(18,59,42,0.11)] lg:min-h-[460px] lg:flex-row lg:items-stretch"
             >
-              <div className="relative h-48 shrink-0 overflow-hidden lg:h-auto lg:w-[41%] lg:min-h-0">
-                <Image
-                  src="/images/children-activity.jpg"
-                  alt={`Students and classrooms representing ${eco.name} at New Vedha`}
-                  fill
-                  sizes="(min-width: 1024px) 28vw, 100vw"
-                  className="object-cover"
+              <div className="relative isolate h-48 w-full shrink-0 overflow-hidden bg-[#e8ebe9] lg:w-[41%] lg:min-h-[min(560px,calc(100vh-180px))] lg:max-w-none">
+                {/* Native img: avoids Next/Image + flex `height:100%` gaps; URLs are HTTPS only */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  key={`${activeEco}-${eco.image}`}
+                  src={eco.image}
+                  alt={eco.imageAlt}
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 z-0 h-full w-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-white/30 lg:to-white" />
-                <p className="absolute bottom-3 left-4 max-w-[12rem] text-xs font-bold uppercase tracking-wider text-white drop-shadow-md lg:text-[0.65rem] lg:text-white/90">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/45 via-black/10 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-white/30 lg:to-white" />
+                <p className="absolute bottom-3 left-4 z-20 max-w-[12rem] text-xs font-bold uppercase tracking-wider text-white drop-shadow-md lg:text-[0.65rem] lg:text-white/90">
                   {eco.name}
                 </p>
               </div>
@@ -961,6 +1081,201 @@ export default function Home() {
                 </div>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="skill-academy"
+        className="relative overflow-hidden bg-[#f4eef8] py-24 md:py-28"
+        aria-labelledby="skill-academy-heading"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.45]"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(109, 40, 217, 0.07) 1px, transparent 1px)",
+            backgroundSize: "26px 26px"
+          }}
+          aria-hidden
+        />
+        <div className="section-shell relative">
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#3d2966] via-[#4c1d6e] to-[#312066] px-8 py-12 text-white shadow-[0_32px_90px_rgba(49,32,102,0.35)] md:px-12 md:py-14">
+            <div
+              className="pointer-events-none absolute -right-[20%] top-1/2 h-[min(80%,420px)] w-[55%] -translate-y-1/2 skew-x-[-14deg] rounded-3xl bg-[#f0b33b]/12 blur-3xl"
+              aria-hidden
+            />
+            <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-5">
+                <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-white/12 ring-2 ring-white/25 backdrop-blur-sm md:size-[4.25rem]">
+                  <GraduationCap className="text-[#f9dc8f]" size={36} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.32em] text-[#e9d5ff]/80">
+                    New Vedha
+                  </p>
+                  <h2
+                    id="skill-academy-heading"
+                    className="mt-2 text-4xl font-black tracking-tight md:text-5xl"
+                  >
+                    Skill Academy
+                  </h2>
+                  <p className="mt-3 max-w-xl text-lg font-semibold italic text-[#e9d5ff]/95 md:text-xl">
+                    Skills Today, Success Tomorrow.
+                  </p>
+                </div>
+              </div>
+              <p className="max-w-md text-base font-black leading-snug text-white/92 md:text-right md:text-lg">
+                Industry-Relevant Skills | Project-Based Learning | Career-Ready Future
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 section-reveal">
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[#5b21b6]">
+              <span className="h-px w-8 bg-[#7c3aed]" aria-hidden />
+              What We Teach
+            </p>
+            <h3 className="mt-4 text-3xl font-black leading-[1.1] text-[#123b2a] md:text-4xl lg:text-[2.65rem]">
+              Programs that mirror what employers value.
+            </h3>
+            <div className="mt-6 rounded-2xl border border-[#c4b5fd] bg-gradient-to-br from-[#faf5ff] via-[#f5f3ff] to-[#ede9fe] px-6 py-5 shadow-[0_12px_36px_rgba(91,33,182,0.07)] md:px-8 md:py-6">
+              <p className="text-xl font-black text-[#312066] md:text-2xl">
+                We teach what you ask for.
+              </p>
+              <p className="mt-3 max-w-3xl text-[0.95rem] font-semibold leading-relaxed text-[#30443b]/90 md:text-lg md:leading-8">
+                The tracks below are popular starting points—not a closed menu. Tell us what you want to learn or achieve, and we will align delivery to your goals. Our faculty spans many more skills and stacks than fit on one page—you are not limited to this list alone.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {skillAcademyTeachAreas.map(({ title, icon: Icon, iconGradient, items }) => (
+                <article
+                  key={title}
+                  className="card-lift rounded-[1.65rem] border border-[#e4d9f5] bg-white/95 p-6 shadow-[0_14px_44px_rgba(49,32,102,0.06)] backdrop-blur-sm md:p-7"
+                >
+                  <div className="flex items-start gap-4">
+                    <span
+                      className={`grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br ${iconGradient} text-white shadow-lg`}
+                      aria-hidden
+                    >
+                      <Icon size={26} strokeWidth={2} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-lg font-black text-[#123b2a] md:text-xl">{title}</h4>
+                      <ul className="mt-4 list-none space-y-2.5 p-0 text-sm font-semibold leading-relaxed text-[#30443b]/88 md:text-[0.9375rem]">
+                        {items.map((line) => (
+                          <li key={line} className="flex gap-2">
+                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#7c3aed]/70" />
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-16 rounded-[2rem] border border-[#d8c4eb] bg-white/90 p-8 shadow-[0_20px_60px_rgba(49,32,102,0.07)] backdrop-blur-sm md:p-10">
+            <p className="text-center text-sm font-black uppercase tracking-[0.28em] text-[#5b21b6]">
+              Our Unique Learning Approach
+            </p>
+            <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
+              {skillAcademyApproachItems.map(({ icon: Icon, title: approachTitle, text }) => (
+                <div key={approachTitle} className="text-center md:px-2">
+                  <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-[#f3e8ff] text-[#5b21b6] shadow-inner">
+                    <Icon size={28} strokeWidth={2} aria-hidden />
+                  </span>
+                  <h4 className="mt-5 text-lg font-black text-[#123b2a] md:text-xl">{approachTitle}</h4>
+                  <p className="mx-auto mt-3 max-w-sm text-[0.95rem] font-semibold leading-relaxed text-[#30443b]/85">
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-16 rounded-[2rem] border border-[#fcd9a8] bg-gradient-to-br from-[#fff4e6] via-[#ffedd5] to-[#fde68a]/40 p-8 shadow-[0_24px_70px_rgba(180,83,9,0.09)] md:p-10">
+            <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-black uppercase tracking-[0.28em] text-[#c2410c]">
+                  Career Support &amp; Job Assistance
+                </p>
+                <h3 className="mt-4 text-2xl font-black text-[#123b2a] md:text-3xl">
+                  From readiness to referrals—support at every step.
+                </h3>
+                <ol className="mt-10 grid gap-6 sm:grid-cols-2">
+                  {skillAcademyCareerSteps.map(({ icon: Icon, title: stepTitle, text }, index) => (
+                    <li
+                      key={stepTitle}
+                      className="relative flex gap-4 rounded-2xl border border-white/60 bg-white/75 p-5 shadow-[0_8px_28px_rgba(180,83,9,0.08)] backdrop-blur-sm"
+                    >
+                      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#fff7ed] text-[#c2410c]">
+                        <Icon size={22} strokeWidth={2} aria-hidden />
+                      </span>
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#92400e]/80">
+                          Step {index + 1}
+                        </p>
+                        <p className="mt-1 text-lg font-black text-[#123b2a]">{stepTitle}</p>
+                        <p className="mt-2 text-sm font-semibold leading-relaxed text-[#30443b]/85">
+                          {text}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <aside className="flex w-full shrink-0 flex-col justify-center gap-4 lg:w-[min(100%,280px)]">
+                <div className="rounded-2xl bg-gradient-to-br from-[#312066] to-[#1e1039] px-6 py-7 text-[#fde047] shadow-[0_20px_50px_rgba(49,32,102,0.35)]">
+                  <p className="text-xs font-black uppercase tracking-[0.26em] text-[#fcd34d]/80">
+                    Pathway
+                  </p>
+                  <p className="mt-4 text-lg font-black leading-snug md:text-xl">
+                    Learn • Build • Get Certified • Get Hired
+                  </p>
+                </div>
+                <div className="rounded-2xl border-2 border-[#f0b33b] bg-white px-6 py-5 text-center shadow-md">
+                  <p className="text-sm font-black uppercase tracking-[0.12em] text-[#312066] md:text-[0.9375rem]">
+                    We build your skills. We shape your future.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <div className="relative mt-16 overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#312066] via-[#3d2966] to-[#261a4d] px-8 py-12 text-center text-white md:px-12 md:py-14">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.2]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(253, 224, 71, 0.35) 1px, transparent 1px)",
+                backgroundSize: "22px 22px"
+              }}
+              aria-hidden
+            />
+            <GraduationCap
+              className="relative mx-auto text-[#f0b33b]"
+              size={44}
+              strokeWidth={2}
+              aria-hidden
+            />
+            <p className="relative mt-6 text-2xl font-black tracking-tight text-[#fcd34d] md:text-[1.85rem]">
+              Your Skills. Your Future. Our Support.
+            </p>
+            <p className="relative mx-auto mt-4 max-w-xl text-[1.05rem] font-semibold text-white/88">
+              Learn. Build Projects. Get Certified. Get Placed.
+            </p>
+            <a
+              href="#contact"
+              className="relative mt-10 inline-flex items-center gap-3 rounded-full border-2 border-[#f0b33b] bg-white px-8 py-4 text-base font-black text-[#312066] shadow-[0_14px_40px_rgba(0,0,0,0.2)] transition hover:-translate-y-1 hover:bg-[#f0b33b]"
+            >
+              Join now &amp; start your journey toward a successful career
+              <span className="text-[#f0b33b]" aria-hidden>
+                &gt;&gt;
+              </span>
+            </a>
           </div>
         </div>
       </section>
