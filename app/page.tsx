@@ -838,118 +838,122 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 leaf-grid opacity-40" aria-hidden />
         <div className="pointer-events-none absolute left-1/2 top-0 h-[280px] w-[90%] -translate-x-1/2 bg-gradient-to-b from-[#f0b33b]/14 to-transparent blur-2xl" aria-hidden />
         <div className="section-shell relative">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div className="lg:sticky lg:top-28">
-              <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[#b87808]">
-                <span className="h-px w-8 bg-[#f0b33b]" aria-hidden />
-                Franchise Opportunity
-              </p>
-              <h2 className="mt-4 text-4xl font-black leading-[1.08] text-[#123b2a] md:text-5xl lg:text-6xl">
-                Build a New Vedha preschool with serious support.
-              </h2>
-              <p className="mt-6 text-lg font-semibold leading-8 text-[#30443b]/76">
-                Commercials are shared only after consultation. The site focuses on
-                vision, support, and fit, then invites serious partners to speak with
-                leadership. Your preschool sits inside our wider{" "}
-                <span className="font-black text-[#123b2a]">Kids To Careers</span>{" "}
-                journey—not an isolated playschool, but an on-ramp into lifelong learning.
-              </p>
-            <a
-              href="#contact"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#123b2a] px-8 py-4 font-black text-white shadow-[0_14px_44px_rgba(18,59,42,0.28)] transition hover:-translate-y-1 hover:bg-[#0b5f63] hover:shadow-[0_20px_50px_rgba(11,95,99,0.35)]"
-            >
-              Request Details <ArrowRight size={18} />
-            </a>
-          </div>
-
-          <div className="grid gap-6">
-            <article className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#f5c24f] via-[#f0b33b] to-[#d49216] p-8 text-[#13251d] shadow-[0_28px_70px_rgba(240,179,59,0.42)] md:p-10">
-              <div className="pointer-events-none absolute -right-12 top-0 h-40 w-40 rounded-full bg-white/25 blur-2xl" aria-hidden />
-              <Building2 size={36} className="relative drop-shadow-sm" />
-              <h3 className="mt-5 text-3xl font-black">Space-first planning</h3>
-              <p className="mt-3 text-lg font-semibold leading-8">
-                Ideal preschool discussion starts with a child-safe, accessible
-                space of approximately 1500-2500 sq ft.
-              </p>
-            </article>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {franchiseSteps.map((step, index) => (
-                <article
-                  key={step}
-                  className="card-lift group rounded-3xl border border-[#dcd4c4] bg-white/92 p-6 shadow-[0_8px_28px_rgba(18,59,42,0.06)] backdrop-blur-sm transition hover:border-[#123b2a]/35 hover:shadow-[0_18px_50px_rgba(18,59,42,0.1)]"
+          <div className="flex flex-col gap-8 lg:gap-10">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start lg:gap-10">
+              <div className="lg:sticky lg:top-28">
+                <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[#b87808]">
+                  <span className="h-px w-8 bg-[#f0b33b]" aria-hidden />
+                  Franchise Opportunity
+                </p>
+                <h2 className="mt-3 text-4xl font-black leading-[1.08] text-[#123b2a] md:text-5xl lg:text-[3.35rem]">
+                  Build a New Vedha preschool with serious support.
+                </h2>
+                <p className="mt-5 text-[1.05rem] font-semibold leading-[1.75rem] text-[#30443b]/78 md:text-lg md:leading-8">
+                  Commercials are shared only after consultation. The site focuses on
+                  vision, support, and fit, then invites serious partners to speak with
+                  leadership. Your preschool sits inside our wider{" "}
+                  <span className="font-black text-[#123b2a]">Kids To Careers</span>{" "}
+                  journey—not an isolated playschool, but an on-ramp into lifelong learning.
+                </p>
+                <a
+                  href="#contact"
+                  className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#123b2a] px-8 py-3.5 font-black text-white shadow-[0_14px_44px_rgba(18,59,42,0.28)] transition hover:-translate-y-1 hover:bg-[#0b5f63] hover:shadow-[0_20px_50px_rgba(11,95,99,0.35)]"
                 >
-                  <p className="inline-grid size-9 place-items-center rounded-xl bg-[#e8f4ee] text-sm font-black text-[#123b2a] transition group-hover:bg-[#123b2a] group-hover:text-white">
-                    0{index + 1}
-                  </p>
-                  <h3 className="mt-4 text-xl font-black leading-snug text-[#123b2a] md:text-2xl">{step}</h3>
+                  Request Details <ArrowRight size={18} />
+                </a>
+              </div>
+
+              <div className="min-w-0">
+                <article className="overflow-hidden rounded-[2rem] border border-[#d6cfc3] bg-white shadow-[0_20px_56px_rgba(18,59,42,0.08)]">
+                  <div className="relative bg-gradient-to-br from-[#f5c24f] via-[#f0b33b] to-[#d49216] px-6 py-6 text-[#13251d] md:flex md:items-center md:gap-8 md:px-8 md:py-6">
+                    <div className="pointer-events-none absolute -right-12 top-0 h-36 w-36 rounded-full bg-white/22 blur-2xl" aria-hidden />
+                    <div className="relative grid size-14 shrink-0 place-items-center rounded-2xl bg-black/12 ring-2 ring-black/10">
+                      <Building2 size={28} className="drop-shadow-sm" />
+                    </div>
+                    <div className="relative mt-5 md:mt-0">
+                      <h3 className="text-xl font-black md:text-2xl">Space-first planning</h3>
+                      <p className="mt-2 text-[0.95rem] font-semibold leading-relaxed opacity-92 md:text-base md:leading-7">
+                        Ideal preschool discussion starts with a child-safe, accessible space of
+                        approximately 1500-2500 sq ft.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-px border-t border-[#e8e4dc] bg-[#e8e4dc] sm:grid-cols-2">
+                    {franchiseSteps.map((step, index) => (
+                      <div
+                        key={step}
+                        className="flex min-w-0 items-start gap-3 bg-[#fafaf8] px-5 py-4 md:gap-3.5 md:px-6 md:py-4 lg:py-[1.125rem]"
+                      >
+                        <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#123b2a] text-[0.7rem] font-black text-white md:size-10 md:text-[0.75rem]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <p className="min-w-0 pt-0.5 text-[0.9375rem] font-black leading-snug text-[#123b2a] md:text-base">
+                          {step}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="relative border-t border-[#e5e0d6] bg-gradient-to-br from-[#fffdf7] via-[#fff9eb] to-[#f5ecd8] px-6 py-6 md:px-8 md:py-7">
+                    <div className="pointer-events-none absolute -left-8 bottom-0 h-28 w-28 rounded-full bg-[#0b5f63]/10 blur-3xl" aria-hidden />
+                    <p className="text-xs font-black uppercase tracking-[0.26em] text-[#b87808]">
+                      Kids To Careers
+                    </p>
+                    <h3 className="mt-2 text-2xl font-black leading-tight text-[#123b2a] md:text-3xl">
+                      One education ecosystem, many future pathways.
+                    </h3>
+                    <p className="mt-3 text-[0.95rem] font-semibold leading-relaxed text-[#30443b]/85 md:text-base md:leading-7">
+                      Franchise partners inherit more than a preschool brand—you join a continuum
+                      from early childhood through coaching, digital learning, and skills-focused
+                      programs. Families can grow with New Vedha; your centre becomes the trusted
+                      first chapter.
+                    </p>
+                    <a
+                      href="#ecosystem"
+                      className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#123b2a]/15 bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#0b5f63] shadow-sm transition hover:border-[#f0b33b]/50 hover:bg-white"
+                    >
+                      Explore the ecosystem <ChevronRight size={15} />
+                    </a>
+                  </div>
                 </article>
-              ))}
+              </div>
             </div>
 
-            <article className="relative overflow-hidden rounded-[2rem] border border-[#e5dcc8] bg-gradient-to-br from-[#fffdf7] via-[#fff9eb] to-[#f5ecd8] p-8 shadow-[0_20px_60px_rgba(18,59,42,0.08)] md:p-10">
-              <div className="pointer-events-none absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-[#0b5f63]/10 blur-3xl" aria-hidden />
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#b87808]">
-                Kids To Careers
-              </p>
-              <h3 className="mt-4 text-3xl font-black leading-tight text-[#123b2a] md:text-4xl">
-                One education ecosystem, many future pathways.
-              </h3>
-              <p className="mt-5 text-lg font-semibold leading-8 text-[#30443b]/82">
-                Franchise partners inherit more than a preschool brand—you join a continuum
-                from early childhood through coaching, digital learning, and skills-focused
-                programs. Families can grow with New Vedha; your centre becomes
-                the trusted first chapter.
-              </p>
-              <a
-                href="#ecosystem"
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#123b2a]/15 bg-white/70 px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-[#0b5f63] shadow-sm transition hover:border-[#f0b33b]/50 hover:bg-white"
-              >
-                Explore the ecosystem <ChevronRight size={16} />
-              </a>
-            </article>
-
-            <article className="rounded-[2rem] border border-[#e0dcd4] bg-[#faf9f6] p-7 shadow-[0_16px_48px_rgba(18,59,42,0.06)] md:p-9">
-              <div className="flex flex-col gap-3 border-b border-[#e5e1da] pb-6 md:flex-row md:items-end md:justify-between md:gap-6">
-                <div>
-                  <h3 className="text-2xl font-black tracking-tight text-[#123b2a] md:text-3xl">
+            <article className="min-w-0 overflow-hidden rounded-[2rem] border border-[#e0dcd4] bg-[#faf9f6] shadow-[0_14px_44px_rgba(18,59,42,0.05)]">
+              <div className="flex flex-col gap-4 border-b border-[#e5e1da] bg-white/60 px-6 py-5 md:flex-row md:items-end md:justify-between md:gap-10 md:px-8 lg:py-6">
+                <div className="max-w-none md:max-w-[min(100%,42rem)] lg:max-w-[min(100%,52rem)]">
+                  <h3 className="text-xl font-black tracking-tight text-[#123b2a] md:text-2xl lg:text-[1.65rem]">
                     360° support for franchise success
                   </h3>
-                  <p className="mt-3 max-w-2xl text-base font-semibold leading-7 text-[#30443b]/80 md:text-[1.05rem] md:leading-8">
+                  <p className="mt-2 text-sm font-semibold leading-relaxed text-[#30443b]/82 md:text-[0.9375rem] md:leading-7 lg:text-[1rem] lg:leading-7">
                     Templates, live conversations with the central team, and clear escalation—so
                     your rollout stays practical, not theoretical.
                   </p>
                 </div>
               </div>
-
-              <ul className="mt-6 grid list-none gap-0 overflow-hidden rounded-xl border border-[#e5e1da] bg-white p-0 md:grid-cols-2">
-                {franchiseSupportPillars.map(({ icon: Icon, title, detail }, index) => (
-                  <li
-                    key={title}
-                    className={`flex gap-4 border-[#e8e5df] p-5 md:gap-5 md:p-6 ${
-                      index < franchiseSupportPillars.length - 1 ? "border-b" : ""
-                    } md:odd:border-r md:[&:nth-child(7)]:border-b-0`}
-                  >
+              <div className="grid gap-px bg-[#e5e1da] sm:grid-cols-2 lg:grid-cols-4">
+                {franchiseSupportPillars.map(({ icon: Icon, title, detail }) => (
+                  <div key={title} className="flex gap-3 bg-white p-4 md:gap-3.5 md:p-5 lg:p-6">
                     <span
-                      className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[rgba(18,59,42,0.06)] text-[#123b2a]"
+                      className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(18,59,42,0.06)] text-[#123b2a] lg:size-11"
                       aria-hidden
                     >
-                      <Icon size={21} strokeWidth={2} />
+                      <Icon size={20} strokeWidth={2} />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-[1.05rem] font-black leading-snug text-[#123b2a] md:text-lg">
+                      <h4 className="text-[0.9375rem] font-black leading-snug text-[#123b2a] md:text-[1rem] lg:text-[1.02rem]">
                         {title}
                       </h4>
-                      <p className="mt-2 text-sm font-semibold leading-relaxed text-[#30443b]/85 md:text-[0.9375rem] md:leading-7">
+                      <p className="mt-1.5 text-[0.8125rem] font-semibold leading-relaxed text-[#30443b]/85 md:text-[0.875rem] md:leading-6 lg:text-[0.9rem] lg:leading-relaxed">
                         {detail}
                       </p>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </article>
           </div>
-        </div>
         </div>
       </section>
 
