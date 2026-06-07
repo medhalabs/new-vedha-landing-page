@@ -336,20 +336,6 @@ const executives: {
     }
   },
   {
-    name: "Pavan Raj K G",
-    designation: "Chief Operating Officer",
-    achievements: [
-      "Founded Medhā Labs in 2022 and leads its product line—highlighting shipped tools such as Billinator and Medha Inbrix, while supporting many technology companies with customised software solutions.",
-      "Continues to ship and evolve further web products alongside bespoke software and growth-focused builds for startups and brands."
-    ],
-    filled: true,
-    seeAlso: {
-      href: "https://medhalabs.in/",
-      label: "Medhā Labs",
-      trailing: "—the studio behind our digital presence."
-    }
-  },
-  {
     name: "Narasimha Murthy",
     designation: "Chief Marketing Officer",
     achievements: [
