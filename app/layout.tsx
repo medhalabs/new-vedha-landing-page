@@ -11,22 +11,25 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://newvedha.com"),
-  title: "New Vedha Pre School | Ancient Wisdom, Modern Minds",
+  title: {
+    default: "New Vedha | Education Franchise · Karnataka",
+    template: "%s | New Vedha"
+  },
   description:
-    "New Vedha is a vision-driven preschool and education ecosystem shaping young minds through joyful learning, character development, and future-ready foundations.",
+    "Build a ₹2Cr+ education business with New Vedha. 5 revenue streams — Play Home, Preschool, Tutorials, Skill Academy & Exam Coaching. 55-60% profit margins. Break-even in 3-4 months.",
+  keywords: ["education franchise Karnataka", "New Vedha franchise", "preschool franchise", "exam coaching franchise", "skill academy franchise"],
   openGraph: {
-    title: "New Vedha Pre School",
+    title: "New Vedha Education Franchise · Karnataka",
     description:
-      "Beyond teaching. We shape minds through joyful early learning and a complete education ecosystem.",
-    images: ["/new-vedha-logo.png"]
+      "Join 500+ education entrepreneurs. ₹2Cr+ revenue potential. 5-module ecosystem. Complete franchise support.",
+    images: ["/new-vedha-logo.png"],
+    type: "website"
   }
 };
 
 export default function RootLayout({
   children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={plusJakarta.variable}>
       <body className="font-sans antialiased">{children}</body>
