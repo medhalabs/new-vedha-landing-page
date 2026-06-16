@@ -214,31 +214,46 @@ const plans = [
   }
 ];
 
-const stories = [
+const foundingPerks = [
   {
-    name: "Rajesh Kumar",
-    city: "Bangalore, Karnataka",
-    quote: "I launched with the Standard plan and hit break-even in 11 weeks. Now I'm expanding to a second centre.",
-    revenue: "₹2.1Cr",
-    students: "312",
-    timeline: "14 months"
+    icon: "🏆",
+    title: "Preferred Location Rights",
+    desc: "Founding partners get first pick of their city or district. Once your territory is locked, no other New Vedha centre opens within your zone."
   },
   {
-    name: "Priya Shankar",
-    city: "Mysore, Karnataka",
-    quote: "The curriculum and support system gave me confidence as a first-time entrepreneur. The team never left me guessing.",
-    revenue: "₹85L",
-    students: "148",
-    timeline: "8 months"
+    icon: "💰",
+    title: "Founding Partner Pricing",
+    desc: "Early-stage franchise fee is significantly lower than post-launch pricing. Lock in today's rate before we scale nationally."
   },
   {
-    name: "Mohammed Irfan",
-    city: "Hubli, Karnataka",
-    quote: "Exam coaching alone fills seats every batch. 26 exam tracks means demand never dries up.",
-    revenue: "₹1.4Cr",
-    students: "230",
-    timeline: "12 months"
+    icon: "🤝",
+    title: "Direct Founder Access",
+    desc: "Work directly with New Vedha founders during setup and launch — not a regional manager. Decisions happen fast, support is hands-on."
+  },
+  {
+    icon: "📣",
+    title: "Co-Marketing Opportunity",
+    desc: "Your centre will be featured in New Vedha's launch campaigns, press releases, and social media as a founding partner story."
+  },
+  {
+    icon: "🔧",
+    title: "Shape the Playbook",
+    desc: "Your feedback directly influences curriculum, pricing, and ops processes. Founding partners help build the systems the whole network will use."
+  },
+  {
+    icon: "📈",
+    title: "First-Mover Advantage",
+    desc: "Be the first education brand in your locality with a proven 5-module system. Build brand equity before any competition arrives."
   }
+];
+
+const milestones = [
+  { year: "2018", label: "Started", desc: "Started UPSC Online Coaching in (Kottigepalya) Bangalore. with 15 students in 1st batch" },
+  { year: "2019", label: "Founded", desc: "Started tutorials for navodaya, SSLC, PUC students in Kadabgere(Bangalore) with 50 students in 1st batch" },
+  { year: "2022", label: "Expanded", desc: "Started our Play Home journey in Mandya." },
+  { year: "2024", label: "New Vedha Pre school", desc: "Launch of New Vedha Pre school brand" },
+  { year: "2025", label: "Franchise Launch", desc: "Registered as a franchisee of New Vedha and started our first centre in Mandya." },
+  { year: "2026", label: "Registed as New Vedha Pre School Pvt Ltd", desc: "Now We are a registered private limited company and serve the Nationwide" },
 ];
 
 const faqs = [
@@ -312,13 +327,78 @@ function useReveal() {
   return ref;
 }
 
-function RevealDiv({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useReveal();
+function RevealDiv({ children, className = "", delay = 0, dir = "up" }: { children: React.ReactNode; className?: string; delay?: number; dir?: "up" | "left" | "right" | "scale" }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const dirClass = dir === "left" ? "reveal-left" : dir === "right" ? "reveal-right" : dir === "scale" ? "reveal-scale" : "reveal";
+  const delayClass = delay === 1 ? "stagger-2" : delay === 2 ? "stagger-4" : delay === 3 ? "stagger-6" : "";
   return (
-    <div ref={ref} className={`reveal ${delay === 1 ? "reveal-delay-1" : delay === 2 ? "reveal-delay-2" : delay === 3 ? "reveal-delay-3" : ""} ${className}`}>
+    <div ref={ref} className={`${dirClass} ${delayClass} ${className}`}>
       {children}
     </div>
   );
+}
+
+/* 3-D tilt card wrapper */
+function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale(1.025)`;
+    el.style.transition = "transform 0.1s ease";
+  };
+  const onLeave = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
+    el.style.transition = "transform 0.5s cubic-bezier(0.22,1,0.36,1)";
+  };
+  return (
+    <div ref={ref} className={`tilt-card ${className}`} onMouseMove={onMove} onMouseLeave={onLeave}>
+      {children}
+    </div>
+  );
+}
+
+/* Animated counter (numeric part only) */
+function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || started.current) return;
+      started.current = true;
+      obs.disconnect();
+      const t0 = performance.now();
+      const dur = 1400;
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        setVal(Math.round(ease * to));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [to]);
+  return <span ref={ref}>{val}{suffix}</span>;
 }
 
 export default function Home() {
@@ -410,6 +490,18 @@ export default function Home() {
         {/* blobs */}
         <div className="blob absolute -left-32 top-20 h-[500px] w-[500px] rounded-full bg-[#1F4E78]/50 blur-[120px]" aria-hidden />
         <div className="blob blob-2 absolute -right-20 top-40 h-[400px] w-[400px] rounded-full bg-[#2ECC71]/20 blur-[100px]" aria-hidden />
+        {/* floating particles */}
+        {[
+          { w: 6, h: 6, left: "15%", top: "20%", dur: "6s", delay: "0s" },
+          { w: 10, h: 10, left: "75%", top: "30%", dur: "8s", delay: "-3s" },
+          { w: 4, h: 4, left: "40%", top: "70%", dur: "5s", delay: "-1s" },
+          { w: 8, h: 8, left: "60%", top: "15%", dur: "7s", delay: "-4s" },
+          { w: 5, h: 5, left: "85%", top: "65%", dur: "9s", delay: "-2s" },
+          { w: 7, h: 7, left: "25%", top: "50%", dur: "6.5s", delay: "-5s" },
+        ].map((p, i) => (
+          <div key={i} aria-hidden className="particle"
+            style={{ width: p.w, height: p.h, left: p.left, top: p.top, animationDuration: p.dur, animationDelay: p.delay }} />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f2744] via-[#1F4E78]/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fafaf8] to-transparent" />
 
@@ -427,7 +519,7 @@ export default function Home() {
               Join 500+ education entrepreneurs. 5 revenue streams. 55-60% profit margins. Break-even in 3-4 months. Complete support system.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#contact" className="inline-flex items-center gap-3 rounded-full bg-[#F39C12] px-7 py-4 text-base font-black text-white shadow-[0_14px_40px_rgba(243,156,18,0.45)] transition hover:-translate-y-1 hover:bg-[#D68910]">
+              <a href="#contact" className="glow-pulse relative inline-flex items-center gap-3 rounded-full bg-[#F39C12] px-7 py-4 text-base font-black text-white shadow-[0_14px_40px_rgba(243,156,18,0.45)] transition hover:-translate-y-1 hover:bg-[#D68910]">
                 Schedule Free Consultation <ArrowRight size={18} />
               </a>
               <a href="#plans" className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-7 py-4 text-base font-black text-white backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/20">
@@ -435,9 +527,10 @@ export default function Home() {
               </a>
             </div>
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {stats.map(s => (
-                <div key={s.label} className="rounded-2xl border border-white/15 bg-white/8 p-3 text-center backdrop-blur-sm">
-                  <p className="text-2xl font-black text-[#F39C12]">{s.num}</p>
+              {stats.map((s, i) => (
+                <div key={s.label} className={`reveal rounded-2xl border border-white/15 bg-white/10 p-3 text-center backdrop-blur-sm transition-all hover:-translate-y-1 stagger-${i + 1 as 1|2|3|4}`}
+                  style={{ transitionDelay: `${i * 0.08}s` }}>
+                  <p className="number-pop text-2xl font-black text-[#F39C12]">{s.num}</p>
                   <p className="mt-0.5 text-xs font-semibold text-white/70">{s.label}</p>
                 </div>
               ))}
@@ -450,9 +543,9 @@ export default function Home() {
               <p className="text-xs font-black uppercase tracking-[0.25em] text-[#2ECC71]">The 5-Module Ecosystem</p>
               <h2 className="mt-3 text-2xl font-black">One centre. Five income streams.</h2>
               <div className="mt-6 grid gap-2.5">
-                {modules.map(m => (
-                  <div key={m.id} className="flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3">
-                    <span className="text-xl">{m.icon}</span>
+                {modules.map((m, mi) => (
+                  <div key={m.id} className="flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3 transition hover:bg-white/20">
+                    <span className={`text-xl float float-delay-${(mi % 3 + 1) as 1|2|3}`}>{m.icon}</span>
                     <div className="flex-1">
                       <p className="text-sm font-black">{m.name}</p>
                       <p className="text-xs text-white/60">{m.age} · {m.fee}</p>
@@ -484,8 +577,9 @@ export default function Home() {
         <div className="shell relative">
           <RevealDiv className="mb-14 text-center">
             <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Why New Vedha?</p>
-            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.5rem]">
-              Built for profit. Backed by purpose.
+            <h2 className="text-4xl font-black leading-[1.08] md:text-5xl lg:text-[3.5rem]">
+              <span className="shimmer-text">Built for profit.</span>{" "}
+              <span className="text-[#1F4E78]">Backed by purpose.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-gray-500">
               Six reasons why New Vedha is India&apos;s smartest education franchise opportunity.
@@ -494,8 +588,8 @@ export default function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {whyCards.map((card, i) => (
-              <RevealDiv key={card.title} delay={i % 3 as 0 | 1 | 2} className="card-hover rounded-3xl border border-gray-100 bg-white p-7 shadow-[0_12px_36px_rgba(31,78,120,0.07)]">
-                <div className="mb-5 grid size-14 place-items-center rounded-2xl bg-[#1F4E78] text-white shadow-[0_10px_28px_rgba(31,78,120,0.3)]">
+              <RevealDiv key={card.title} delay={i % 3 as 0 | 1 | 2} className="card-hover group rounded-3xl border border-gray-100 bg-white p-7 shadow-[0_12px_36px_rgba(31,78,120,0.07)] hover:border-[#1F4E78]/20">
+                <div className="mb-5 grid size-14 place-items-center rounded-2xl bg-[#1F4E78] text-white shadow-[0_10px_28px_rgba(31,78,120,0.3)] transition group-hover:scale-110 group-hover:rotate-3">
                   <card.icon size={24} />
                 </div>
                 <h3 className="text-xl font-black text-[#1F4E78]">{card.title}</h3>
@@ -532,8 +626,8 @@ export default function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {marketStats.map((s, i) => (
-              <RevealDiv key={s.label} delay={i % 3 as 0 | 1 | 2} className="rounded-3xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm">
-                <p className="stat-num text-5xl font-black text-[#F39C12]">{s.num}</p>
+              <RevealDiv key={s.label} delay={i as 0 | 1 | 2} className="card-hover rounded-3xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm hover:bg-white/15">
+                <p className="text-5xl font-black text-[#F39C12]">{s.num}</p>
                 <p className="mt-3 text-sm font-bold text-white/70">{s.label}</p>
               </RevealDiv>
             ))}
@@ -582,7 +676,7 @@ export default function Home() {
             </div>
 
             {/* module detail */}
-            <div key={mod.id} className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-[0_32px_80px_rgba(31,78,120,0.1)]">
+            <div key={mod.id} className="tab-content overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-[0_32px_80px_rgba(31,78,120,0.1)]">
               <div className={`bg-gradient-to-br ${mod.color} p-10 text-white`}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -636,9 +730,9 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div key={activeExamTab} className="tab-content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {exams[activeExamTab].map(exam => (
-              <div key={exam.name} className="card-hover rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+              <div key={exam.name} className="card-hover rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:border-[#1F4E78]/20 hover:shadow-md">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-black text-gray-800">{exam.name}</p>
@@ -669,8 +763,9 @@ export default function Home() {
 
           <div className="grid gap-6 lg:grid-cols-3">
             {plans.map((plan, i) => (
-              <RevealDiv key={plan.name} delay={i as 0 | 1 | 2}
-                className={`relative overflow-hidden rounded-3xl border ${plan.highlight ? "border-[#1F4E78] shadow-[0_28px_70px_rgba(31,78,120,0.2)]" : "border-gray-200 bg-white shadow-[0_12px_36px_rgba(31,78,120,0.06)]"}`}>
+              <RevealDiv key={plan.name} delay={i as 0 | 1 | 2}>
+              <TiltCard
+                className={`relative overflow-hidden rounded-3xl border h-full ${plan.highlight ? "border-[#1F4E78] shadow-[0_28px_70px_rgba(31,78,120,0.2)]" : "border-gray-200 bg-white shadow-[0_12px_36px_rgba(31,78,120,0.06)]"}`}>
                 {plan.highlight && (
                   <>
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1F4E78] to-[#163959]" />
@@ -704,52 +799,84 @@ export default function Home() {
                   </ul>
 
                   <a href="#contact"
-                    className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 font-black transition ${plan.highlight ? "bg-[#F39C12] text-white hover:bg-[#D68910]" : "border border-[#1F4E78]/20 text-[#1F4E78] hover:bg-[#1F4E78] hover:text-white"}`}>
+                    className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 font-black transition ${plan.highlight ? "glow-pulse bg-[#F39C12] text-white hover:bg-[#D68910]" : "border border-[#1F4E78]/20 text-[#1F4E78] hover:bg-[#1F4E78] hover:text-white"}`}>
                     Get Details <ArrowRight size={16} />
                   </a>
                 </div>
+              </TiltCard>
               </RevealDiv>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SUCCESS STORIES ── */}
+      {/* ── FOUNDING PARTNER ── */}
       <section id="stories" className="relative overflow-hidden bg-[#f5f8ff] py-24 md:py-28">
-        <div className="shell">
-          <RevealDiv className="mb-14 text-center">
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Success Stories</p>
-            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl">Real people. Real results.</h2>
+        <div className="blob absolute -right-32 top-10 h-[400px] w-[400px] rounded-full bg-[#2ECC71]/10 blur-[120px]" aria-hidden />
+        <div className="shell relative">
+          <RevealDiv className="mb-4 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F39C12]/30 bg-[#F39C12]/10 px-4 py-2 text-sm font-black text-[#F39C12]">
+              🚀 Limited Founding Partner Slots — Karnataka
+            </div>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.5rem]">
+              Be among the first.<br />Own the advantage.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-gray-500">
+              We are in active expansion across Karnataka. Early partners get benefits that won&apos;t be available once we scale. Here&apos;s what founding partners receive that later franchisees won&apos;t.
+            </p>
           </RevealDiv>
-          <div className="grid gap-6 md:grid-cols-3">
-            {stories.map((s, i) => (
-              <RevealDiv key={s.name} delay={i as 0 | 1 | 2} className="card-hover overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_16px_48px_rgba(31,78,120,0.08)]">
-                <div className="h-2 bg-gradient-to-r from-[#1F4E78] to-[#2ECC71]" />
-                <div className="p-7">
-                  <div className="mb-5 flex gap-1">
-                    {[1,2,3,4,5].map(n => <Star key={n} size={14} fill="#F39C12" className="text-[#F39C12]" />)}
-                  </div>
-                  <p className="text-base font-semibold italic leading-7 text-gray-600">&ldquo;{s.quote}&rdquo;</p>
-                  <div className="mt-6 border-t border-gray-100 pt-5">
-                    <p className="font-black text-gray-800">{s.name}</p>
-                    <p className="text-sm font-bold text-gray-400">{s.city}</p>
-                    <div className="mt-4 grid grid-cols-3 gap-2">
-                      {[
-                        { label: "Revenue", val: s.revenue },
-                        { label: "Students", val: s.students },
-                        { label: "Timeline", val: s.timeline }
-                      ].map(item => (
-                        <div key={item.label} className="rounded-xl bg-[#f5f8ff] p-2.5 text-center">
-                          <p className="text-sm font-black text-[#1F4E78]">{item.val}</p>
-                          <p className="text-xs font-bold text-gray-400">{item.label}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+
+          {/* perks grid */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {foundingPerks.map((perk, i) => (
+              <RevealDiv key={perk.title} delay={i % 3 as 0 | 1 | 2}
+                className="card-hover group rounded-3xl border border-gray-100 bg-white p-7 shadow-[0_12px_36px_rgba(31,78,120,0.07)] hover:border-[#1F4E78]/20">
+                <div className="mb-4 text-3xl float float-delay-1">{perk.icon}</div>
+                <h3 className="text-lg font-black text-[#1F4E78]">{perk.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-gray-500">{perk.desc}</p>
               </RevealDiv>
             ))}
           </div>
+
+          {/* journey timeline */}
+          <RevealDiv className="mt-16">
+            <p className="mb-8 text-center text-xs font-black uppercase tracking-[0.28em] text-gray-400">Our Journey</p>
+            <div className="relative">
+              <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-[#1F4E78]/20 via-[#2ECC71]/40 to-transparent md:block" aria-hidden />
+              <div className="grid gap-6 md:gap-0">
+                {milestones.map((m, i) => (
+                  <div key={m.year} className={`relative flex items-start gap-6 md:items-center ${i % 2 === 0 ? "md:flex-row md:pr-[52%]" : "md:flex-row-reverse md:pl-[52%]"}`}>
+                    <div className={`hidden md:flex shrink-0 absolute left-1/2 -translate-x-1/2 size-10 items-center justify-center rounded-full border-4 border-white bg-[#1F4E78] text-xs font-black text-white shadow-[0_8px_24px_rgba(31,78,120,0.3)]`}>
+                      {m.year.slice(2)}
+                    </div>
+                    <div className={`w-full rounded-2xl border border-gray-100 bg-white p-5 shadow-sm ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                      <div className="flex items-center gap-2 md:hidden">
+                        <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#1F4E78] text-xs font-black text-white">{m.year.slice(2)}</span>
+                        <p className="text-xs font-black text-gray-400">{m.year}</p>
+                      </div>
+                      <p className="hidden text-xs font-black text-gray-400 md:block">{m.year}</p>
+                      <p className="mt-1 text-base font-black text-[#1F4E78]">{m.label}</p>
+                      <p className="mt-1 text-sm font-semibold text-gray-500">{m.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </RevealDiv>
+
+          {/* CTA strip */}
+          <RevealDiv delay={1} className="mt-14 overflow-hidden rounded-3xl bg-gradient-to-br from-[#1F4E78] to-[#163959] p-8 text-white md:p-10">
+            <div className="grid items-center gap-6 md:grid-cols-[1fr_auto]">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-[#2ECC71]">Founding Partner Slots</p>
+                <h3 className="mt-2 text-2xl font-black md:text-3xl">Slots are filling fast. Secure your area now.</h3>
+                <p className="mt-3 text-base font-semibold text-white/70">Once a area is taken, it&apos;s closed. Schedule a call to check availability in your area.</p>
+              </div>
+              <a href="#contact" className="glow-pulse inline-flex shrink-0 items-center gap-2 rounded-2xl bg-[#F39C12] px-7 py-4 font-black text-white transition hover:bg-[#D68910]">
+                Check My City <ArrowRight size={18} />
+              </a>
+            </div>
+          </RevealDiv>
         </div>
       </section>
 
@@ -798,7 +925,7 @@ export default function Home() {
                     <ChevronDown size={20} className={`shrink-0 text-[#1F4E78] transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                   </button>
                   {openFaq === i && (
-                    <p className="border-t border-gray-100 px-6 pb-6 pt-4 text-sm font-semibold leading-7 text-gray-500">{faq.a}</p>
+                    <p className="tab-content border-t border-gray-100 px-6 pb-6 pt-4 text-sm font-semibold leading-7 text-gray-500">{faq.a}</p>
                   )}
                 </div>
               </RevealDiv>
@@ -812,7 +939,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(31,78,120,0.05)_1px,transparent_1px)] [background-size:28px_28px]" aria-hidden />
         <div className="shell relative">
           <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
-            <RevealDiv>
+            <RevealDiv dir="left">
               <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Contact</p>
               <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.2rem]">
                 Ready to build your education business?
@@ -862,7 +989,7 @@ export default function Home() {
             </RevealDiv>
 
             {/* lead form */}
-            <RevealDiv delay={1}>
+            <RevealDiv delay={1} dir="right">
               <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_24px_70px_rgba(31,78,120,0.1)] md:p-10">
                 {formState === "success" ? (
                   <div className="flex min-h-[400px] flex-col items-center justify-center text-center">
