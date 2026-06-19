@@ -52,6 +52,7 @@ a {
   scroll-margin-top: 6rem;
 }
 
+<<<<<<< HEAD
 ::selection {
   background: #f0b33b;
   color: #13251d;
@@ -84,6 +85,9 @@ a {
 }
 
 /* ----- Navigation ----- */
+=======
+/* nav underline */
+>>>>>>> parent of 19ed68f (second update)
 .nav-link {
   position: relative;
   padding: 0.35rem 0;
@@ -104,6 +108,7 @@ a {
   transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+<<<<<<< HEAD
 .nav-link:hover {
   color: rgb(255 255 255);
 }
@@ -115,8 +120,49 @@ a {
 /* ----- Hero ----- */
 .hero-blob {
   animation: blobDrift 18s ease-in-out infinite;
+=======
+/* scroll progress */
+.scroll-bar {
+  position: fixed;
+  left: 0; top: 0;
+  height: 3px;
+  z-index: 100;
+  background: linear-gradient(90deg, #1F4E78, #2ECC71, #F39C12);
+  transition: width 0.15s ease-out;
 }
 
+/* section reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* card hover */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, border-color 0.25s;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(31,78,120,0.14);
+}
+
+/* number counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+>>>>>>> parent of 19ed68f (second update)
+}
+.stat-num { animation: countUp 0.6s ease-out both; }
+
+<<<<<<< HEAD
 .hero-blob-b {
   animation-delay: -7s;
 }
@@ -196,6 +242,45 @@ a {
     stroke-dashoffset: 80;
   }
 }
+=======
+/* marquee */
+.marquee-wrap { overflow: hidden; }
+.marquee-inner {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: marquee 32s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* hero blob */
+@keyframes blob {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(14px,-20px) scale(1.05); }
+  66% { transform: translate(-16px,12px) scale(0.97); }
+}
+.blob { animation: blob 18s ease-in-out infinite; }
+.blob-2 { animation-delay: -8s; }
+
+/* tab active indicator */
+.tab-active {
+  background: linear-gradient(135deg, #1F4E78, #163959);
+  color: #fff;
+  box-shadow: 0 16px 44px rgba(31,78,120,0.3);
+}
+
+/* form focus */
+.field {
+  @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-base text-gray-800 outline-none
+    transition focus:border-[#1F4E78] focus:ring-2 focus:ring-[#1F4E78]/20 placeholder:text-gray-400;
+}
+.field-error { @apply border-red-400 focus:border-red-500 focus:ring-red-100; }
+.error-msg { @apply mt-1 text-sm text-red-500; }
+.label { @apply mb-1.5 block text-sm font-bold text-gray-700; }
+>>>>>>> parent of 19ed68f (second update)
 
 @media (prefers-reduced-motion: reduce) {
   .orbit-connectors-spokes line,
@@ -406,4 +491,8 @@ details > summary::-webkit-details-marker {
     animation: none !important;
     opacity: 1;
   }
+<<<<<<< HEAD
+=======
+  .reveal { opacity: 1; transform: none; }
+>>>>>>> parent of 19ed68f (second update)
 }

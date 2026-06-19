@@ -351,6 +351,36 @@ const executives: {
   }
 ];
 
+<<<<<<< HEAD
+=======
+const stories = [
+  {
+    name: "Rajesh Kumar",
+    city: "Bangalore, Karnataka",
+    quote: "I launched with the Standard plan and hit break-even in 11 weeks. Now I'm expanding to a second centre.",
+    revenue: "₹2.1Cr",
+    students: "312",
+    timeline: "14 months"
+  },
+  {
+    name: "Priya Shankar",
+    city: "Mysore, Karnataka",
+    quote: "The curriculum and support system gave me confidence as a first-time entrepreneur. The team never left me guessing.",
+    revenue: "₹85L",
+    students: "148",
+    timeline: "8 months"
+  },
+  {
+    name: "Mohammed Irfan",
+    city: "Hubli, Karnataka",
+    quote: "Exam coaching alone fills seats every batch. 26 exam tracks means demand never dries up.",
+    revenue: "₹1.4Cr",
+    students: "230",
+    timeline: "12 months"
+  }
+];
+
+>>>>>>> parent of 19ed68f (second update)
 const faqs = [
   {
     q: "Do you show investment or module prices on the website?",
@@ -366,6 +396,62 @@ const faqs = [
   }
 ];
 
+<<<<<<< HEAD
+=======
+const exams = {
+  karnataka: [
+    { name: "KAS (Karnataka Administrative Service)", vacancies: "150+", fee: "₹40K" },
+    { name: "PSI / ASI (Police Sub-Inspector)", vacancies: "1,200+", fee: "₹25K" },
+    { name: "PC / Constable Recruitment", vacancies: "5,000+", fee: "₹15K" },
+    { name: "FDA / SDA (First & Second Division Assistant)", vacancies: "2,000+", fee: "₹20K" },
+    { name: "Group C & D (Various Departments)", vacancies: "3,000+", fee: "₹12K" },
+    { name: "KPSC (Karnataka Public Service Commission)", vacancies: "800+", fee: "₹35K" }
+  ],
+  national: [
+    { name: "SSC CGL / CHSL", vacancies: "10,000+", fee: "₹30K" },
+    { name: "IBPS PO / Clerk (Banking)", vacancies: "8,000+", fee: "₹28K" },
+    { name: "Railway Group C & D (RRB)", vacancies: "15,000+", fee: "₹20K" },
+    { name: "NDA / CDS (Defence)", vacancies: "600+", fee: "₹45K" },
+    { name: "UPSC Civil Services", vacancies: "1,000+", fee: "₹60K" },
+    { name: "CRPF / CISF / BSF Constable", vacancies: "12,000+", fee: "₹18K" }
+  ],
+  education: [
+    { name: "TET (Teacher Eligibility Test)", vacancies: "5,000+", fee: "₹22K" },
+    { name: "CTET (Central TET)", vacancies: "3,000+", fee: "₹25K" },
+    { name: "KTET / D.Ed Exams", vacancies: "2,500+", fee: "₹20K" },
+    { name: "B.Ed Entrance Examinations", vacancies: "4,000+", fee: "₹18K" },
+    { name: "DSERT / DIET Recruitment", vacancies: "800+", fee: "₹28K" },
+    { name: "NVS / KVS Teacher Recruitment", vacancies: "2,000+", fee: "₹30K" }
+  ]
+};
+
+/* ─────────────────────────── COMPONENT ─────────────────────────── */
+
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add("visible"); obs.disconnect(); } },
+      { threshold: 0.12 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+function RevealDiv({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useReveal();
+  return (
+    <div ref={ref} className={`reveal ${delay === 1 ? "reveal-delay-1" : delay === 2 ? "reveal-delay-2" : delay === 3 ? "reveal-delay-3" : ""} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+>>>>>>> parent of 19ed68f (second update)
 export default function Home() {
   const [activeProgram, setActiveProgram] = useState(0);
   const [activeEco, setActiveEco] = useState(0);
@@ -512,6 +598,7 @@ export default function Home() {
         </div>
       </header>
 
+<<<<<<< HEAD
       <section id="home" className="relative min-h-[94vh] overflow-hidden bg-[#061b16] text-white">
         <Image
           src="/images/classroom-learning.jpg"
@@ -531,6 +618,18 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(4,20,16,0.95)_0%,rgba(4,20,16,0.74)_42%,rgba(4,20,16,0.3)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 z-[3] h-36 bg-[linear-gradient(0deg,#faf6ee_0%,rgba(250,246,238,0)_100%)]" />
+=======
+      {/* ── HERO ── */}
+      <section id="home" className="relative min-h-[96vh] overflow-hidden bg-[#0f2744] text-white">
+        {/* background image */}
+        <Image src="/images/classroom-learning.jpg" alt="Education centre" fill sizes="100vw"
+          className="object-cover opacity-20" priority />
+        {/* blobs */}
+        <div className="blob absolute -left-32 top-20 h-[500px] w-[500px] rounded-full bg-[#1F4E78]/50 blur-[120px]" aria-hidden />
+        <div className="blob blob-2 absolute -right-20 top-40 h-[400px] w-[400px] rounded-full bg-[#2ECC71]/20 blur-[100px]" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0f2744] via-[#1F4E78]/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fafaf8] to-transparent" />
+>>>>>>> parent of 19ed68f (second update)
 
         <div className="section-shell relative z-10 grid min-h-[94vh] items-center gap-10 pb-24 pt-[6.5rem] lg:grid-cols-[1.04fr_0.96fr] lg:pb-20 lg:pt-28">
           <div className="relative z-20 max-w-4xl section-reveal">
@@ -559,6 +658,7 @@ export default function Home() {
               character, creativity, and confidence are shaped from the very first
               years.
             </p>
+<<<<<<< HEAD
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <a
@@ -567,6 +667,11 @@ export default function Home() {
               >
                 Explore Learning{" "}
                 <Play size={17} fill="currentColor" className="transition group-hover:scale-110" />
+=======
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href="#contact" className="inline-flex items-center gap-3 rounded-full bg-[#F39C12] px-7 py-4 text-base font-black text-white shadow-[0_14px_40px_rgba(243,156,18,0.45)] transition hover:-translate-y-1 hover:bg-[#D68910]">
+                Schedule Free Consultation <ArrowRight size={18} />
+>>>>>>> parent of 19ed68f (second update)
               </a>
               <a
                 href="#franchise"
@@ -575,6 +680,7 @@ export default function Home() {
                 Franchise Enquiry <ArrowRight size={18} />
               </a>
             </div>
+<<<<<<< HEAD
           </div>
 
           <div className="relative z-0 hidden section-reveal section-reveal-delay-1 lg:block">
@@ -634,12 +740,40 @@ export default function Home() {
                   >
                     {item}
                   </span>
+=======
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {stats.map(s => (
+                <div key={s.label} className="rounded-2xl border border-white/15 bg-white/8 p-3 text-center backdrop-blur-sm">
+                  <p className="text-2xl font-black text-[#F39C12]">{s.num}</p>
+                  <p className="mt-0.5 text-xs font-semibold text-white/70">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* right card */}
+          <div className="hidden lg:block">
+            <div className="relative rounded-[2rem] border border-white/15 bg-white/10 p-8 backdrop-blur-xl shadow-[0_32px_80px_rgba(0,0,0,0.4)]">
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-[#2ECC71]">The 5-Module Ecosystem</p>
+              <h2 className="mt-3 text-2xl font-black">One centre. Five income streams.</h2>
+              <div className="mt-6 grid gap-2.5">
+                {modules.map(m => (
+                  <div key={m.id} className="flex items-center gap-3 rounded-xl bg-white/10 px-4 py-3">
+                    <span className="text-xl">{m.icon}</span>
+                    <div className="flex-1">
+                      <p className="text-sm font-black">{m.name}</p>
+                      <p className="text-xs text-white/60">{m.age} · {m.fee}</p>
+                    </div>
+                    <ChevronRight size={16} className="text-white/40" />
+                  </div>
+>>>>>>> parent of 19ed68f (second update)
                 ))}
               </div>
             </div>
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="absolute bottom-7 left-0 right-0 z-10 hidden overflow-hidden md:block">
           <div className="marquee-track flex w-max gap-4 text-xs font-black uppercase tracking-[0.32em] text-white/58">
             {[
@@ -667,6 +801,154 @@ export default function Home() {
                   {item}
                 </span>
               ))}
+=======
+        {/* marquee */}
+        <div className="absolute bottom-12 left-0 right-0 hidden overflow-hidden md:block">
+          <div className="marquee-inner text-xs font-black uppercase tracking-[0.3em] text-white/40">
+            {["5 Revenue Streams", "55-60% Profit Margins", "3-4 Month Break-Even", "Complete Support", "500+ Entrepreneurs", "Proven Systems", "Government Exam Coaching", "84 Skill Courses"].concat(["5 Revenue Streams", "55-60% Profit Margins", "3-4 Month Break-Even", "Complete Support", "500+ Entrepreneurs", "Proven Systems", "Government Exam Coaching", "84 Skill Courses"]).map((item, i) => (
+              <span key={i} className="px-8">{item}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY NEW VEDHA ── */}
+      <section id="why" className="relative overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(31,78,120,0.05)_1px,transparent_1px)] [background-size:28px_28px]" aria-hidden />
+        <div className="shell relative">
+          <RevealDiv className="mb-14 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Why New Vedha?</p>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.5rem]">
+              Built for profit. Backed by purpose.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-gray-500">
+              Six reasons why New Vedha is India&apos;s smartest education franchise opportunity.
+            </p>
+          </RevealDiv>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyCards.map((card, i) => (
+              <RevealDiv key={card.title} delay={i % 3 as 0 | 1 | 2} className="card-hover rounded-3xl border border-gray-100 bg-white p-7 shadow-[0_12px_36px_rgba(31,78,120,0.07)]">
+                <div className="mb-5 grid size-14 place-items-center rounded-2xl bg-[#1F4E78] text-white shadow-[0_10px_28px_rgba(31,78,120,0.3)]">
+                  <card.icon size={24} />
+                </div>
+                <h3 className="text-xl font-black text-[#1F4E78]">{card.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-gray-500">{card.desc}</p>
+                <ul className="mt-5 space-y-2">
+                  {card.bullets.map(b => (
+                    <li key={b} className="flex items-center gap-2 text-sm font-bold text-gray-700">
+                      <span className="grid size-5 place-items-center rounded-full bg-[#2ECC71]/15 text-[#27AE60]">
+                        <Check size={13} strokeWidth={3} />
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </RevealDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── MARKET OPPORTUNITY ── */}
+      <section className="relative overflow-hidden bg-[#1F4E78] py-24 text-white md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:32px_32px]" aria-hidden />
+        <div className="blob absolute -left-40 -top-20 h-[400px] w-[400px] rounded-full bg-[#2ECC71]/20 blur-[120px]" aria-hidden />
+        <div className="blob blob-2 absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-[#F39C12]/15 blur-[100px]" aria-hidden />
+        <div className="shell relative">
+          <RevealDiv className="mb-14 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Market Opportunity</p>
+            <h2 className="text-4xl font-black md:text-5xl lg:text-[3.5rem]">Why now? The numbers don&apos;t lie.</h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-white/70">
+              Karnataka&apos;s education demand is exploding. Every number below is a potential student walking through your door.
+            </p>
+          </RevealDiv>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {marketStats.map((s, i) => (
+              <RevealDiv key={s.label} delay={i % 3 as 0 | 1 | 2} className="rounded-3xl border border-white/15 bg-white/10 p-7 text-center backdrop-blur-sm">
+                <p className="stat-num text-5xl font-black text-[#F39C12]">{s.num}</p>
+                <p className="mt-3 text-sm font-bold text-white/70">{s.label}</p>
+              </RevealDiv>
+            ))}
+          </div>
+
+          <RevealDiv delay={1} className="mt-10 rounded-3xl border border-white/15 bg-white/8 p-8 backdrop-blur-sm md:p-10">
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                { label: "Expected annual revenue / centre", value: "₹15–20L" },
+                { label: "Profit margin", value: "55–60%" },
+                { label: "Full ROI timeline", value: "12 months" }
+              ].map(item => (
+                <div key={item.label} className="text-center">
+                  <p className="text-4xl font-black text-[#2ECC71]">{item.value}</p>
+                  <p className="mt-2 text-sm font-bold text-white/65">{item.label}</p>
+                </div>
+              ))}
+            </div>
+          </RevealDiv>
+        </div>
+      </section>
+
+      {/* ── 5 MODULES ── */}
+      <section id="modules" className="relative overflow-hidden py-24 md:py-32">
+        <div className="shell">
+          <RevealDiv className="mb-14 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">The 5-Module Ecosystem</p>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.5rem]">Five ways students enrich your centre.</h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-gray-500">Each module runs independently. Together, they multiply your revenue and create lifelong student journeys.</p>
+          </RevealDiv>
+
+          <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
+            {/* module tabs */}
+            <div className="grid gap-3 lg:self-start lg:sticky lg:top-24">
+              {modules.map((m, i) => (
+                <button key={m.id} type="button" onClick={() => setActiveModule(i)}
+                  className={`flex w-full items-center gap-4 rounded-2xl border px-5 py-4 text-left transition-all duration-250 ${activeModule === i ? "tab-active border-transparent" : "border-gray-200 bg-white text-gray-800 shadow-sm hover:border-[#1F4E78]/30 hover:shadow-md"}`}>
+                  <span className="text-2xl">{m.icon}</span>
+                  <div className="flex-1">
+                    <p className="text-sm font-black">{m.name}</p>
+                    <p className={`text-xs font-semibold ${activeModule === i ? "text-white/70" : "text-gray-400"}`}>{m.age}</p>
+                  </div>
+                  <ChevronRight size={16} className={activeModule === i ? "text-[#F39C12]" : "text-gray-300"} />
+                </button>
+              ))}
+            </div>
+
+            {/* module detail */}
+            <div key={mod.id} className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-[0_32px_80px_rgba(31,78,120,0.1)]">
+              <div className={`bg-gradient-to-br ${mod.color} p-10 text-white`}>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.25em] text-white/70">{mod.age}</p>
+                    <h3 className="mt-2 text-4xl font-black">{mod.name}</h3>
+                    <p className="mt-1 text-lg font-bold text-white/85">{mod.fee}</p>
+                  </div>
+                  <span className="text-5xl">{mod.icon}</span>
+                </div>
+                <p className="mt-6 text-lg font-semibold leading-8 text-white/90">{mod.desc}</p>
+              </div>
+              <div className="p-8 md:p-10">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-gray-400">Student Outcomes</p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  {mod.outcomes.map(o => (
+                    <div key={o} className="flex items-center gap-2.5 rounded-xl bg-gray-50 p-4">
+                      <Check size={16} strokeWidth={3} className="shrink-0 text-[#27AE60]" />
+                      <span className="text-sm font-bold text-gray-700">{o}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link href={mod.href} className="inline-flex items-center gap-2 rounded-xl bg-[#1F4E78] px-6 py-3 font-black text-white transition hover:bg-[#163959]">
+                    Full Module Details <ArrowRight size={16} />
+                  </Link>
+                  <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-[#1F4E78]/20 px-6 py-3 font-black text-[#1F4E78] transition hover:bg-[#1F4E78]/5">
+                    Book Consultation
+                  </a>
+                </div>
+              </div>
+            </div>
+>>>>>>> parent of 19ed68f (second update)
           </div>
         </div>
       </section>
@@ -719,6 +1001,7 @@ export default function Home() {
             ))}
           </div>
 
+<<<<<<< HEAD
           <article className="program-panel grid overflow-hidden rounded-[2rem] border border-white/12 bg-[#102f25] text-white shadow-[0_36px_100px_rgba(18,59,42,0.28)] ring-1 ring-[#123b2a]/20 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative min-h-[420px]">
               <Image
@@ -735,6 +1018,18 @@ export default function Home() {
                   Current Program
                 </p>
                 <p className="mt-1 text-3xl font-black">{program.name}</p>
+=======
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {exams[activeExamTab].map(exam => (
+              <div key={exam.name} className="card-hover rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="font-black text-gray-800">{exam.name}</p>
+                    <p className="mt-1 text-xs font-bold text-gray-400">{exam.vacancies} vacancies / year</p>
+                  </div>
+                  <span className="shrink-0 rounded-lg bg-[#1F4E78]/10 px-2.5 py-1 text-xs font-black text-[#1F4E78]">{exam.fee}</span>
+                </div>
+>>>>>>> parent of 19ed68f (second update)
               </div>
             </div>
             <div className="p-8 md:p-10">
@@ -788,6 +1083,7 @@ export default function Home() {
             </div>
           </div>
 
+<<<<<<< HEAD
           <div className="section-reveal">
             <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.28em] text-[#f0b33b]">
               <span className="h-px w-8 bg-[#f0b33b]" aria-hidden />
@@ -862,6 +1158,22 @@ export default function Home() {
                         Ideal preschool discussion starts with a child-safe, accessible space of
                         approximately 1500-2500 sq ft.
                       </p>
+=======
+          <div className="grid gap-6 lg:grid-cols-3">
+            {plans.map((plan, i) => (
+              <RevealDiv key={plan.name} delay={i as 0 | 1 | 2}
+                className={`relative overflow-hidden rounded-3xl border ${plan.highlight ? "border-[#1F4E78] shadow-[0_28px_70px_rgba(31,78,120,0.2)]" : "border-gray-200 bg-white shadow-[0_12px_36px_rgba(31,78,120,0.06)]"}`}>
+                {plan.highlight && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1F4E78] to-[#163959]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:20px_20px]" />
+                  </>
+                )}
+                <div className={`relative p-7 ${plan.highlight ? "text-white" : "text-gray-800"}`}>
+                  {plan.label && (
+                    <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#F39C12] px-3 py-1 text-xs font-black text-white">
+                      <Star size={11} fill="currentColor" /> {plan.label}
+>>>>>>> parent of 19ed68f (second update)
                     </div>
                   </div>
 
@@ -1432,6 +1744,7 @@ export default function Home() {
                     ))}
                   </ul>
 
+<<<<<<< HEAD
                   {exec.seeAlso ? (
                     <p className="mt-6 text-xs font-bold text-[#30443b]/55">
                       Also see{" "}
@@ -1444,6 +1757,177 @@ export default function Home() {
                         {exec.seeAlso.label}
                       </a>{" "}
                       {exec.seeAlso.trailing}
+=======
+                  <a href="#contact"
+                    className={`mt-7 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 font-black transition ${plan.highlight ? "bg-[#F39C12] text-white hover:bg-[#D68910]" : "border border-[#1F4E78]/20 text-[#1F4E78] hover:bg-[#1F4E78] hover:text-white"}`}>
+                    Get Details <ArrowRight size={16} />
+                  </a>
+                </div>
+              </RevealDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SUCCESS STORIES ── */}
+      <section id="stories" className="relative overflow-hidden bg-[#f5f8ff] py-24 md:py-28">
+        <div className="shell">
+          <RevealDiv className="mb-14 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Success Stories</p>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl">Real people. Real results.</h2>
+          </RevealDiv>
+          <div className="grid gap-6 md:grid-cols-3">
+            {stories.map((s, i) => (
+              <RevealDiv key={s.name} delay={i as 0 | 1 | 2} className="card-hover overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_16px_48px_rgba(31,78,120,0.08)]">
+                <div className="h-2 bg-gradient-to-r from-[#1F4E78] to-[#2ECC71]" />
+                <div className="p-7">
+                  <div className="mb-5 flex gap-1">
+                    {[1,2,3,4,5].map(n => <Star key={n} size={14} fill="#F39C12" className="text-[#F39C12]" />)}
+                  </div>
+                  <p className="text-base font-semibold italic leading-7 text-gray-600">&ldquo;{s.quote}&rdquo;</p>
+                  <div className="mt-6 border-t border-gray-100 pt-5">
+                    <p className="font-black text-gray-800">{s.name}</p>
+                    <p className="text-sm font-bold text-gray-400">{s.city}</p>
+                    <div className="mt-4 grid grid-cols-3 gap-2">
+                      {[
+                        { label: "Revenue", val: s.revenue },
+                        { label: "Students", val: s.students },
+                        { label: "Timeline", val: s.timeline }
+                      ].map(item => (
+                        <div key={item.label} className="rounded-xl bg-[#f5f8ff] p-2.5 text-center">
+                          <p className="text-sm font-black text-[#1F4E78]">{item.val}</p>
+                          <p className="text-xs font-bold text-gray-400">{item.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </RevealDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FRANCHISE BENEFITS ── */}
+      <section className="relative overflow-hidden py-24 md:py-28">
+        <div className="shell">
+          <RevealDiv className="mb-14 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Franchise Support</p>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl">We&apos;re with you every step.</h2>
+          </RevealDiv>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: BookOpen, title: "Complete Curriculum", desc: "Age-appropriate, CBSE-aligned curriculum for all levels. Updated regularly by our academic team." },
+              { icon: LayoutGrid, title: "Technology & Systems", desc: "Centre management software, parent app, attendance tracking, and fee collection tools." },
+              { icon: Users, title: "Training & Support", desc: "Staff onboarding, teacher training, operational SOPs, and escalation support from day one." },
+              { icon: Zap, title: "Marketing & Brand", desc: "Brand assets, local campaign playbooks, social media templates, and admissions scripting." },
+              { icon: GraduationCap, title: "Placement Support", desc: "Skill Academy and Exam Coaching students get job application and interview preparation support." },
+              { icon: TrendingUp, title: "Scalability Roadmap", desc: "Quarterly reviews, growth planning, and a clear path to add modules and open new centres." }
+            ].map((b, i) => (
+              <RevealDiv key={b.title} delay={i % 3 as 0 | 1 | 2} className="card-hover rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
+                <div className="mb-5 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-[#1F4E78] to-[#2ECC71] text-white">
+                  <b.icon size={22} />
+                </div>
+                <h3 className="text-lg font-black text-gray-800">{b.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-gray-500">{b.desc}</p>
+              </RevealDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section id="faq" className="relative overflow-hidden bg-[#f5f8ff] py-24 md:py-28">
+        <div className="shell">
+          <RevealDiv className="mb-12 text-center">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">FAQ</p>
+            <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl">Questions answered.</h2>
+          </RevealDiv>
+          <div className="mx-auto max-w-3xl space-y-3">
+            {faqs.map((faq, i) => (
+              <RevealDiv key={faq.q}>
+                <div className={`overflow-hidden rounded-2xl border bg-white transition-all ${openFaq === i ? "border-[#1F4E78]/30 shadow-[0_16px_48px_rgba(31,78,120,0.1)]" : "border-gray-100 shadow-sm"}`}>
+                  <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="flex w-full items-center justify-between gap-4 p-6 text-left">
+                    <span className="text-base font-black text-gray-800">{faq.q}</span>
+                    <ChevronDown size={20} className={`shrink-0 text-[#1F4E78] transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
+                  </button>
+                  {openFaq === i && (
+                    <p className="border-t border-gray-100 px-6 pb-6 pt-4 text-sm font-semibold leading-7 text-gray-500">{faq.a}</p>
+                  )}
+                </div>
+              </RevealDiv>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT / CTA ── */}
+      <section id="contact" className="relative overflow-hidden py-24 md:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(31,78,120,0.05)_1px,transparent_1px)] [background-size:28px_28px]" aria-hidden />
+        <div className="shell relative">
+          <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
+            <RevealDiv>
+              <p className="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[#F39C12]">Contact</p>
+              <h2 className="text-4xl font-black leading-[1.08] text-[#1F4E78] md:text-5xl lg:text-[3.2rem]">
+                Ready to build your education business?
+              </h2>
+              <p className="mt-5 text-lg font-semibold leading-8 text-gray-500">
+                Schedule a free 30-minute consultation with New Vedha leadership. We&apos;ll walk you through the opportunity, answer your questions, and help you decide if it&apos;s the right fit.
+              </p>
+
+              <div className="mt-10 space-y-5">
+                {[
+                  { icon: Phone, label: "Nagabushan N (CEO)", val: "+91 8310325960", href: "tel:+918310325960" },
+                  { icon: Phone, label: "Narasimha Murthy (CMO)", val: "+91 9743595827", href: "tel:+919743595827" },
+                  { icon: Mail, label: "Email", val: "sandesh@newvedha.com", href: "mailto:sandesh@newvedha.com" },
+                  { icon: MapPin, label: "Head Office", val: "No 176, 9th Cross, Annapurneshwari Nagar, near Nagarbhavi BDA Complex, Bangalore 79", href: undefined }
+                ].map(item => (
+                  <div key={item.label} className="flex items-start gap-4">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-[#1F4E78] text-white">
+                      <item.icon size={20} />
+                    </span>
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-gray-400">{item.label}</p>
+                      {item.href ? (
+                        <a href={item.href} className="mt-0.5 block text-base font-bold text-gray-700 hover:text-[#1F4E78]">{item.val}</a>
+                      ) : (
+                        <p className="mt-0.5 text-base font-bold text-gray-700">{item.val}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* modules at a glance */}
+              <div className="mt-10 rounded-3xl border border-[#1F4E78]/15 bg-[#f5f8ff] p-6">
+                <p className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-gray-400">Available Modules</p>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {modules.map(m => (
+                    <div key={m.id} className="flex items-center gap-2.5 rounded-xl bg-white p-3 shadow-sm">
+                      <span className="text-lg">{m.icon}</span>
+                      <div>
+                        <p className="text-sm font-black text-gray-700">{m.name}</p>
+                        <p className="text-xs font-semibold text-gray-400">{m.fee}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </RevealDiv>
+
+            {/* lead form */}
+            <RevealDiv delay={1}>
+              <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_24px_70px_rgba(31,78,120,0.1)] md:p-10">
+                {formState === "success" ? (
+                  <div className="flex min-h-[400px] flex-col items-center justify-center text-center">
+                    <div className="mb-6 grid size-20 place-items-center rounded-full bg-[#2ECC71]/15 text-[#27AE60]">
+                      <Check size={36} strokeWidth={2.5} />
+                    </div>
+                    <h3 className="text-2xl font-black text-gray-800">Thank you, {formData.name}!</h3>
+                    <p className="mt-4 text-base font-semibold leading-7 text-gray-500">
+                      We&apos;ve received your enquiry. A member of the New Vedha team will contact you within 24 hours to schedule your consultation.
+>>>>>>> parent of 19ed68f (second update)
                     </p>
                   ) : null}
                 </div>
