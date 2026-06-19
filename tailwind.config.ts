@@ -26,6 +26,21 @@ const config: Config = {
           dark: "#D68910",
           light: "#f5b041"
         },
+        steel: {
+          DEFAULT: "#4682B4",
+          dark: "#366891",
+          darker: "#2d5a7a",
+          light: "#6a9bc4",
+          50: "#eef4fa",
+          100: "#dce8f3",
+          200: "#b8cfe0",
+          300: "#8fb3d1",
+          400: "#5a96c2",
+          500: "#4682B4",
+          600: "#3a6d96",
+          700: "#366891",
+          800: "#2d5a7a"
+        },
         ink: "#1a1a2e",
         cream: "#fafaf8",
         mist: "#f0f4f8"

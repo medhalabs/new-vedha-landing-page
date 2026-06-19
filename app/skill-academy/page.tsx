@@ -370,7 +370,7 @@ export default function SkillAcademyPage() {
         <div className="shell">
           <h3 className="mb-6 text-xl font-black text-[#1F4E78]">Explore other modules</h3>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[["🧸", "Play Home", "/play-home", "bg-emerald-50 border-emerald-200 text-emerald-700"], ["📚", "Preschool", "/preschool", "bg-blue-50 border-blue-200 text-blue-700"], ["🎯", "Tutorials", "/tutorials", "bg-violet-50 border-violet-200 text-violet-700"], ["🏛️", "Exam Coaching", "/exam-coaching", "bg-rose-50 border-rose-200 text-rose-700"]].map(([icon, name, href, cls]) => (
+            {[["🧸", "Play Home", "/play-home", "bg-emerald-50 border-emerald-200 text-emerald-700"], ["📚", "Preschool", "/preschool", "bg-blue-50 border-blue-200 text-blue-700"], ["🎯", "Tutorials", "/tutorials", "bg-steel-50 border-steel-200 text-steel-700"], ["🏛️", "Exam Coaching", "/exam-coaching", "bg-rose-50 border-rose-200 text-rose-700"]].map(([icon, name, href, cls]) => (
               <Link key={href} href={href} className={`card-hover flex items-center gap-3 rounded-2xl border p-4 font-bold ${cls}`}>
                 <span className="text-2xl">{icon}</span><span>{name}</span><ArrowRight size={15} className="ml-auto" />
               </Link>

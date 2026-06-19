@@ -109,7 +109,7 @@ export default function TutorialsPage() {
       </div>
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-violet-700 to-purple-800 py-24 text-white md:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-steel-600 to-steel-800 py-24 text-white md:py-28">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] [background-size:24px_24px]" aria-hidden />
         <div className="shell relative grid items-center gap-12 lg:grid-cols-2">
           <div>
@@ -117,7 +117,7 @@ export default function TutorialsPage() {
             <h1 className="text-5xl font-black leading-[1.05] md:text-6xl lg:text-[4.5rem]">Academic excellence through personalised support.</h1>
             <p className="mt-6 text-xl font-semibold leading-8 text-white/85">Small batches, diagnostic-first teaching, weekly tests, and board-focused revision. We close the gap between school marks and actual potential.</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#enroll" className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 font-black text-violet-700 shadow-xl transition hover:-translate-y-1">Enroll Now <ArrowRight size={17} /></a>
+              <a href="#enroll" className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-4 font-black text-steel-700 shadow-xl transition hover:-translate-y-1">Enroll Now <ArrowRight size={17} /></a>
               <a href="#approach" className="inline-flex items-center gap-2.5 rounded-full border border-white/30 bg-white/15 px-7 py-4 font-black backdrop-blur-sm transition hover:bg-white/25">Our Approach</a>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -146,16 +146,16 @@ export default function TutorialsPage() {
           <div className="mb-4 flex flex-wrap gap-2">
             {classTabs.map((t, i) => (
               <button key={t.label} onClick={() => setActiveClass(i)} type="button"
-                className={`rounded-full px-5 py-2.5 text-sm font-black transition ${activeClass === i ? "bg-[#1F4E78] text-white shadow-md" : "border border-gray-200 bg-white text-gray-600 hover:border-violet-300"}`}>
+                className={`rounded-full px-5 py-2.5 text-sm font-black transition ${activeClass === i ? "bg-[#1F4E78] text-white shadow-md" : "border border-gray-200 bg-white text-gray-600 hover:border-steel-300"}`}>
                 {t.label}
               </button>
             ))}
           </div>
-          <div className="rounded-3xl border border-violet-100 bg-gradient-to-br from-violet-50 to-purple-50 p-8">
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-violet-500">Subjects Covered</p>
+          <div className="rounded-3xl border border-steel-100 bg-gradient-to-br from-steel-50 to-steel-100 p-8">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-steel-500">Subjects Covered</p>
             <div className="flex flex-wrap gap-2">
               {cls.subjects.map(s => (
-                <span key={s} className="rounded-full bg-white px-4 py-2 text-sm font-black text-violet-700 shadow-sm">{s}</span>
+                <span key={s} className="rounded-full bg-white px-4 py-2 text-sm font-black text-steel-700 shadow-sm">{s}</span>
               ))}
             </div>
             <p className="mt-6 font-semibold text-gray-600">{cls.focus}</p>
@@ -182,7 +182,7 @@ export default function TutorialsPage() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {approach.map(a => (
-              <div key={a.title} className="card-hover rounded-2xl border border-violet-100 bg-white p-6 shadow-sm">
+              <div key={a.title} className="card-hover rounded-2xl border border-steel-100 bg-white p-6 shadow-sm">
                 <span className="text-3xl">{a.icon}</span>
                 <h3 className="mt-3 text-lg font-black text-gray-800">{a.title}</h3>
                 <p className="mt-2 text-sm font-semibold leading-7 text-gray-500">{a.desc}</p>
@@ -202,7 +202,7 @@ export default function TutorialsPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {results.map(r => (
               <div key={r.student} className="card-hover rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-violet-50 text-violet-600"><TrendingUp size={22} /></div>
+                <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-steel-50 text-steel-600"><TrendingUp size={22} /></div>
                 <p className="text-2xl font-black text-[#1F4E78]">{r.score}</p>
                 <p className="mt-1 text-sm font-black text-[#27AE60]">{r.improvement}</p>
                 <p className="mt-4 font-bold text-gray-700">{r.student}</p>

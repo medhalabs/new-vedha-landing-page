@@ -377,7 +377,7 @@ export default function PlayHomePage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { name: "Preschool", icon: "📚", href: "/preschool", color: "bg-blue-50 border-blue-200 text-blue-700" },
-              { name: "Tutorials", icon: "🎯", href: "/tutorials", color: "bg-violet-50 border-violet-200 text-violet-700" },
+              { name: "Tutorials", icon: "🎯", href: "/tutorials", color: "bg-steel-50 border-steel-200 text-steel-700" },
               { name: "Skill Academy", icon: "💡", href: "/skill-academy", color: "bg-orange-50 border-orange-200 text-orange-700" },
               { name: "Exam Coaching", icon: "🏛️", href: "/exam-coaching", color: "bg-rose-50 border-rose-200 text-rose-700" }
             ].map(m => (
